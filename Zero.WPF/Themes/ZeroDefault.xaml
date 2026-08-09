@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Static Colors -->
+    <SolidColorBrush x:Key="Zero.Static.Background" Color="#3883fa"/>
+    <SolidColorBrush x:Key="Zero.Static.Foreground" Color="White"/>
+    <SolidColorBrush x:Key="Zero.Input.Background" Color="White"/>
+    <SolidColorBrush x:Key="Zero.Input.Foreground" Color="Black"/>
+    <SolidColorBrush x:Key="Zero.Static.Border" Color="Gray"/>
+    <SolidColorBrush x:Key="Zero.MouseOver.Background" Color="#FFBEE6FD"/>
+    <SolidColorBrush x:Key="Zero.MouseOver.Border" Color="#FF3C7FB1"/>
+    <SolidColorBrush x:Key="Zero.Focus.Border" Color="#FF569DE5"/>
+    <SolidColorBrush x:Key="Zero.Pressed.Background" Color="#FFC4E5F6"/>
+    <SolidColorBrush x:Key="Zero.Pressed.Border" Color="#FF2C628B"/>
+    <SolidColorBrush x:Key="Zero.Disabled.Background" Color="#FFF4F4F4"/>
+    <SolidColorBrush x:Key="Zero.Disabled.Border" Color="#FFADB2B5"/>
+    <SolidColorBrush x:Key="Zero.Disabled.Foreground" Color="#FF838383"/>
+    <SolidColorBrush x:Key="Zero.MaskBackground" Color="Black" Opacity="0.2"/>
+    <SolidColorBrush x:Key="Zero.CheckedForeground" Color="White"/>
+    <SolidColorBrush x:Key="Zero.CheckedBackground" Color="DodgerBlue"/>
+
+    <!-- Static Thicknesses -->
+    <Thickness x:Key="Zero.Padding">5</Thickness>
+    <Thickness x:Key="Zero.Margin">5</Thickness>
+    <Thickness x:Key="Zero.BorderThickness">0</Thickness>
+    <Thickness x:Key="Zero.Input.BorderThickness">1</Thickness>
+
+    <CornerRadius x:Key="Zero.CornerRadius">5</CornerRadius>
+
+    <!-- Font -->
+    <sys:Double x:Key="Zero.FontSize">16</sys:Double>
+    <FontFamily x:Key="Zero.FontFamily">Microsoft YaHei UI</FontFamily>
+    <FontFamily x:Key="Zero.FontFamily.Icon">pack://application:,,,/Zero.WPF;component/Resources/Fonts/#ZeroIcons</FontFamily>
+    
+</ResourceDictionary>

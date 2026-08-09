@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:zcvt="clr-namespace:Zero.WPF.Converters">
+
+    <zcvt:AndMultiConverter x:Key="Zero.Converter.And"/>
+    <zcvt:BooleanIndexMultiConverter x:Key="Zero.Converter.BooleanIndex"/>
+    <zcvt:BooleanInverterConverter x:Key="Zero.Converter.BooleanInverter"/>
+    <zcvt:BooleanToVisibilityConverter x:Key="Zero.Converter.BooleanToVisibility"/>
+    <zcvt:GenderConverter x:Key="Zero.Converter.Gender"/>
+    <zcvt:IntToHexConverter x:Key="Zero.Converter.IntToHex"/>
+    <zcvt:ObjectToStringMultiConverter x:Key="Zero.Converter.ObjectToString"/>
+    <zcvt:OrMultiConverter x:Key="Zero.Converter.Or"/>
+
+</ResourceDictionary>

@@ -1,0 +1,23 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Zero.WPF.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Zero.WPF;component/Themes/ZeroDefault.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Themes/IconCodes.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Themes/ZeroConverters.xaml"/>
+        <!-- 控件默认样式 -->
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroComboBox.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroButton.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroLabel.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroNumericBox.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroRadioButton.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroSwitchButton.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroTextBox.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroPasswordBox.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroDatePicker.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroTabControl.xaml"/>
+        <!-- Styles -->
+        <ResourceDictionary Source="/Zero.WPF;component/Resources/Styles/TextBlockStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
