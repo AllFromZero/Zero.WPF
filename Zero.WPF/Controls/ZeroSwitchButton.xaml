@@ -1,0 +1,116 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Zero.WPF.Controls">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Zero.WPF;component/Themes/ZeroDefault.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Themes/IconCodes.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <TextBlock x:Key="IsOffIcon" FontFamily="{StaticResource Zero.FontFamily.Icon}" Text="{StaticResource Zero.IconCode.ToggleLeft}" x:Shared="False"></TextBlock>
+    <TextBlock x:Key="IsOnIcon" FontFamily="{StaticResource Zero.FontFamily.Icon}" Text="{StaticResource Zero.IconCode.ToggleRight}" x:Shared="False"></TextBlock>
+    <TextBlock x:Key="IsNullIcon" FontFamily="{StaticResource Zero.FontFamily.Icon}" Text="{StaticResource Zero.IconCode.ToggleBorder}" x:Shared="False"></TextBlock>
+
+    <Style TargetType="local:ZeroSwitchButton">
+        <Setter Property="FontFamily" Value="{StaticResource Zero.FontFamily}"/>
+        <Setter Property="FontSize" Value="{StaticResource Zero.FontSize}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Zero.Static.Border}"/>
+        <Setter Property="Content" Value="OFF"/>
+        <Setter Property="Icon" Value="{StaticResource IsOffIcon}"/>
+        <Setter Property="Background" Value="{StaticResource Zero.Static.Background}"/>
+        <Setter Property="Foreground" Value="{StaticResource Zero.Static.Foreground}"/>
+        <Setter Property="IsOnContent" Value="ON"/>
+        <Setter Property="IsOnIcon" Value="{StaticResource IsOnIcon}"/>
+        <Setter Property="IsOnBackground" Value="{StaticResource Zero.Static.Background}"/>
+        <Setter Property="IsOnForeground" Value="LightGreen"/>
+        <Setter Property="IsNullContent" Value="NULL"/>
+        <Setter Property="IsNullIcon" Value="{StaticResource IsNullIcon}"/>
+        <Setter Property="IsNullBackground" Value="{StaticResource Zero.Static.Background}"/>
+        <Setter Property="IsNullForeground" Value="Gray"/>
+        <Setter Property="BorderThickness" Value="{StaticResource Zero.BorderThickness}"/>
+        <Setter Property="MaskBackground" Value="{StaticResource Zero.MaskBackground}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="{StaticResource Zero.Padding}"/>
+        <Setter Property="Margin" Value="{StaticResource Zero.Margin}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ZeroSwitchButton">
+                    <Grid>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding CornerRadius}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <DockPanel LastChildFill="True" Margin="{TemplateBinding Padding}">
+                                <Border DockPanel.Dock="{TemplateBinding IconAlignment}" Width="{TemplateBinding IconWidth}" Height="{TemplateBinding IconHeight}">
+                                    <ContentPresenter x:Name="contentIcon" Content="{TemplateBinding Icon}" Margin="{TemplateBinding IconMargin}" Focusable="False" HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                                </Border>
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </DockPanel>
+                        </Border>
+                        <Border x:Name="maskBorder" TextBlock.Foreground="{TemplateBinding Foreground}" 
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Background="Transparent"
+                                Margin="0"
+                                BorderBrush="Transparent"
+                                BorderThickness="0" >
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Icon" Value="{x:Null}">
+                            <Setter Property="Margin" TargetName="contentIcon" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="Icon" Value="">
+                            <Setter Property="Margin" TargetName="contentIcon" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="{x:Null}">
+                            <Setter Property="Margin" TargetName="contentIcon" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="">
+                            <Setter Property="Margin" TargetName="contentIcon" Value="0"/>
+                        </Trigger>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="maskBorder" Value="{Binding Path=MaskBackground,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Margin" TargetName="maskBorder" Value="{Binding Path=Padding,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <Trigger Property="IsOn" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{Binding Path=IsOnBackground,RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="border" Value="{Binding Path=IsOnForeground,RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter Property="Content" TargetName="contentIcon" Value="{Binding Path=IsOnIcon,RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter Property="Content" TargetName="contentPresenter" Value="{Binding Path=IsOnContent,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <Trigger Property="IsOn" Value="{x:Null}">
+                            <Setter Property="Background" TargetName="border" Value="{Binding Path=IsNullBackground,RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="border" Value="{Binding Path=IsNullForeground,RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter Property="Content" TargetName="contentIcon" Value="{Binding Path=IsNullIcon,RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Setter Property="Content" TargetName="contentPresenter" Value="{Binding Path=IsNullContent,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Zero.Disabled.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Zero.Disabled.Border}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Zero.Disabled.Foreground}"/>
+                        </Trigger>
+                        <Trigger Property="IsOnIcon" Value="{x:Null}">
+                            <Setter Property="Content" TargetName="contentIcon" Value="{Binding Path=Icon,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                        <Trigger Property="IsOnIcon" Value="">
+                            <Setter Property="Content" TargetName="contentIcon" Value="{Binding Path=Icon,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
