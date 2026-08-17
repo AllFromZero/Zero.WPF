@@ -1217,7 +1217,7 @@
     <sys:String x:Key="Zero.IconCode.SetlockScreen">&#xe7b5;</sys:String>
     <sys:String x:Key="Zero.IconCode.SetSolid">&#xf5ee;</sys:String>
     <sys:String x:Key="Zero.IconCode.SetTile">&#xe97b;</sys:String>
-    <sys:String x:Key="Zero.IconCode.Settings">&#xE731;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Settings">&#xE115;</sys:String>
     <sys:String x:Key="Zero.IconCode.SettingsBattery">&#xee63;</sys:String>
     <sys:String x:Key="Zero.IconCode.SettingsDisplaySound">&#xe7f3;</sys:String>
     <sys:String x:Key="Zero.IconCode.SettingsSolid">&#xf8b0;</sys:String>
