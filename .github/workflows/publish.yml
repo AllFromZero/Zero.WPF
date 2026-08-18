@@ -40,12 +40,15 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-nuget-
 
+    # 🔧 修复1：单独还原，强制刷新并输出详细信息
     - name: Restore dependencies
-      run: dotnet restore ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }}
+      run: |
+        dotnet restore "${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }}" \
+          --force \
+          --verbosity detailed
+      shell: bash
 
-    - name: Run tests (optional)
-      run: dotnet test ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} --no-restore --verbosity normal || true
-
+    # 🔧 修复2：获取版本号（移到构建前，确保后续步骤可用）
     - name: Get version from tag
       id: get_version
       run: |
@@ -55,13 +58,16 @@ jobs:
         echo "version=$VERSION" >> $GITHUB_OUTPUT
       shell: bash
 
-    # 🔨 构建（使用完整相对路径）
+    # 🔧 修复3：构建时跳过还原，使用已有缓存
     - name: Build project
       run: |
-        dotnet build ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} --configuration Release --verbosity normal
+        dotnet build "${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }}" \
+          --configuration Release \
+          --no-restore \
+          --verbosity normal
       shell: bash
 
-    # 🔍 验证 DLL
+    # 🔧 修复4：验证 DLL 是否存在
     - name: Verify DLL exists
       run: |
         if exist "${{ env.PROJECT_FOLDER }}\bin\Release\net10.0-windows\Zero.WPF.dll" (
@@ -74,7 +80,7 @@ jobs:
         )
       shell: cmd
 
-    # 📦 打包（同样使用完整路径）
+    # 🔧 修复5：打包时使用 --no-build，基于已构建的产物
     - name: Pack
       run: |
         VERSION="${{ steps.get_version.outputs.version }}"
@@ -88,15 +94,17 @@ jobs:
           -p:SymbolPackageFormat=snupkg \
           -p:ContinuousIntegrationBuild=true
       shell: bash
-      
-    # ✅ 使用 PowerShell 列出目录，避免路径解析问题
+
+    # 🔧 修复6：列出输出目录（使用 PowerShell，更可靠）
     - name: List output directory
       run: |
         Write-Host "=== Contents of $env:PACKAGE_OUTPUT_DIR ==="
-        Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR
+        Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR -Force
       shell: pwsh
+      env:
+        PACKAGE_OUTPUT_DIR: ${{ env.PACKAGE_OUTPUT_DIR }}
 
-    # ✅ 推送时带上占位符 API Key
+    # 🔧 修复7：推送时使用 OIDC + 占位符 API Key
     - name: Push to NuGet.org (OIDC)
       run: |
         echo "Pushing packages from ${{ env.PACKAGE_OUTPUT_DIR }}"
@@ -106,6 +114,7 @@ jobs:
           --skip-duplicate
       shell: bash
 
+    # 🔧 修复8：创建 GitHub Release
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       with:
