@@ -1,280 +1,228 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Zero.WPF.Core.MVVM
 {
     /// <summary>
-    /// 页面导航视图模型
+    /// 页面导航视图模型（基于 CommunityToolkit.Mvvm）
     /// </summary>
-    public class BrowserPageViewModel : ZeroViewModel
+    public partial class BrowserPageViewModel : ZeroViewModel
     {
-        #region Private Property
+        #region Observable Properties（自动生成属性）
 
         /// <summary>
-        /// 目标页面
+        /// 目标页（UI 输入绑定）
         /// </summary>
-        private int targetPage = 1;
-        /// <summary>
-        /// 总记录数量
-        /// </summary>
-        private int _totalCnt = 0;
+        [ObservableProperty]
+        private int _targetPage = 1;
+
         /// <summary>
         /// 总页数
         /// </summary>
-        private int _totalPageCnt = 0;
+        [ObservableProperty]
+        private int _totalPageCnt;
+
         /// <summary>
-        /// 当前页数
+        /// 当前页
         /// </summary>
-        private int _currentPage = 0;
+        [ObservableProperty]
+        private int _currentPage;
+
         /// <summary>
         /// 当前页面起始数据编号
         /// </summary>
-        private int _startIndex = 0;
+        [ObservableProperty]
+        private int _startIndex;
+
+        #endregion
+
+        #region 自定义属性（带业务逻辑）
         /// <summary>
-        /// 每月数据量
+        /// 总记录数（设置时自动计算总页数）
+        /// </summary>
+        private int _totalCnt;
+        /// <summary>
+        /// 单页记录数量（默认100，最小值1）
         /// </summary>
         private int _onePageCount = 100;
 
-        #endregion Private Property
-
-        #region Public Propery
-
-        #region Command
         /// <summary>
-        /// 首页
-        /// </summary>
-        public RelayCommand FirstPageCommand { get; set; }
-        /// <summary>
-        /// 上一页
-        /// </summary>
-        public RelayCommand PreviousPageCommand { get; set; }
-        /// <summary>
-        /// 下一页
-        /// </summary>
-        public RelayCommand NextPageCommand { get; set; }
-        /// <summary>
-        /// 最后一页
-        /// </summary>
-        public RelayCommand LastPageCommand { get; set; }
-        /// <summary>
-        /// 跳转页面
-        /// </summary>
-        public RelayCommand GotoPageCommand { get; set; }
-
-        #endregion Command
-
-        #region Page
-
-        /// <summary>
-        /// 目标页
-        /// </summary>
-        public int TargetPage
-        {
-            get => targetPage;
-            set
-            {
-                targetPage = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// 总记录数
+        /// 总记录数（设置时自动计算总页数）
         /// </summary>
         public int TotalCnt
         {
             get => _totalCnt;
             set
             {
-                _totalCnt = value;
-                TotalPageCnt = value % OnePageCnt == 0 ? value / OnePageCnt : value / OnePageCnt + 1;
-                OnPropertyChanged();
+                if (SetProperty(ref _totalCnt, value))
+                {
+                    // 更新总页数
+                    TotalPageCnt = CalculatePageCount(value, OnePageCnt);
+                }
             }
         }
 
         /// <summary>
-        /// 总页数
+        /// 单页记录数量（默认100，最小值1）
         /// </summary>
-        public int TotalPageCnt
-        {
-            get => _totalPageCnt;
-            set
-            {
-                _totalPageCnt = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// 当前页
-        /// </summary>
-        public int CurrentPage
-        {
-            get => _currentPage;
-            set
-            {
-                _currentPage = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// 当前页面起始数据编号
-        /// </summary>
-        /// <remarks>与查询的的数据绑定，通常与数据ID所兼容，配合Limit属性查询</remarks>
-        public int StartIndex
-        {
-            get => _startIndex;
-            set
-            {
-                _startIndex = value;
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// 单页记录数量
-        /// </summary>
-        /// <remarks>默认值100</remarks>
         public int OnePageCnt
         {
             get => _onePageCount;
             set
             {
-                _onePageCount = value;
-                if (value <= 0)
+                var validValue = value <= 0 ? 100 : value;
+                if (SetProperty(ref _onePageCount, validValue))
                 {
-                    _onePageCount = 100;
+                    // 重新计算总页数
+                    if (_totalCnt > 0)
+                    {
+                        TotalPageCnt = CalculatePageCount(_totalCnt, validValue);
+                    }
                 }
-                OnPropertyChanged();
             }
         }
 
-        #endregion Page
-
-        #endregion Public Property
-
         /// <summary>
-        /// 构造函数
+        /// 辅助计算总页数
         /// </summary>
-        public BrowserPageViewModel()
+        /// <param name="total">总记录数</param>
+        /// <param name="pageSize">每页记录数</param>
+        /// <returns></returns>
+        private static int CalculatePageCount(int total, int pageSize)
         {
-            FirstPageCommand = new RelayCommand(FirstPage);
-            NextPageCommand = new RelayCommand(NextPage);
-            PreviousPageCommand = new RelayCommand(PreviousPage);
-            GotoPageCommand = new RelayCommand(GoToPage);
-            LastPageCommand = new RelayCommand(LastPage);
+            return total == 0 ? 0 : (total - 1) / pageSize + 1;
         }
 
-        #region Method
+        #endregion
 
-        #region Page
-
+        #region 命令（自动生成）
         /// <summary>
-        /// 查询记录
+        /// 首页
         /// </summary>
-        /// <remarks>需要根据查询到的记录更新StartIndex属性</remarks>
-        protected virtual bool QueryPage()
-        {
-            throw new NotImplementedException("Please override the method \"QueryPage()\".");
-        }
-        
-
-        /// <summary>
-        /// 第一页
-        /// </summary>
-        public void FirstPage(object? sender)
-        {
-            GoToPage(1);
-        }
+        [RelayCommand]
+        private void FirstPage() => OnGoToPage(1);
 
         /// <summary>
         /// 下一页
         /// </summary>
-        public void NextPage(object? sender)
-        {
-            GoToPage(CurrentPage + 1);
-        }
-
+        [RelayCommand]
+        private void NextPage() => OnGoToPage(CurrentPage + 1);
         /// <summary>
         /// 上一页
         /// </summary>
-        public void PreviousPage(object? sender)
+        [RelayCommand]
+        private void PreviousPage() => OnGoToPage(CurrentPage - 1);
+        /// <summary>
+        /// 最后一页
+        /// </summary>
+        [RelayCommand]
+        private void LastPage() => OnGoToPage(TotalPageCnt);
+        /// <summary>
+        /// 跳转到指定页（参数可为 int 或 string，可自动解析）
+        /// </summary>
+        /// <param name="parameter"></param>
+        [RelayCommand]
+        private void GoToPage(object? parameter)
         {
-            GoToPage(CurrentPage - 1);
+            int target = parameter is string str && int.TryParse(str, out int parsed) ? parsed
+                        : parameter is int i ? i
+                        : 1;
+            OnGoToPage(target);
         }
 
+        #endregion
+
+        #region 可重写的核心逻辑
+
         /// <summary>
-        /// 导航到指定页面
+        /// 执行页面跳转（子类可重写以扩展验证或行为）
         /// </summary>
-        public void GoToPage(object? sender)
+        protected virtual void OnGoToPage(int target)
         {
-            if (sender != null && int.TryParse(sender.ToString(), out int result))
+            TargetPage = target; // 同步 UI 输入框
+
+            // 无数据时提示
+            if (TotalPageCnt == 0)
             {
-                TargetPage = result;
-            }
-            else
-            {
-                TargetPage = 1;
+                ShowNoDataWarning();
+                TargetPage = CurrentPage;
+                return;
             }
 
+            // 边界检查
+            if (target > TotalPageCnt)
+            {
+                ShowTargetPageTooLargeWarning();
+                TargetPage = CurrentPage;
+                return;
+            }
+            if (target <= 0)
+            {
+                ShowPageTooLessWarning();
+                TargetPage = CurrentPage;
+                return;
+            }
+
+            // 与当前页相同时提示
+            if (CurrentPage == 1 && target == 1)
+            {
+                ShowFirstPageWarning();
+                TargetPage = CurrentPage;
+                return;
+            }
+            if (CurrentPage == TotalPageCnt && target == TotalPageCnt)
+            {
+                ShowLastPageWarning();
+                TargetPage = CurrentPage;
+                return;
+            }
+
+            // 更新当前页并查询
+            CurrentPage = target;
             try
             {
-                if (TargetPage > TotalPageCnt)
-                {
-                    ShowTargetPageTooLargeWarning();
-                    TargetPage = CurrentPage;
-                    return;
-                }
-                else if (TargetPage <= 0)
-                {
-                    ShowPageTooLessWarning();
-                    TargetPage = CurrentPage;
-                    return;
-                }
-                else if (TotalPageCnt > 0 && CurrentPage == 1 && TargetPage == 1)
-                {
-                    ShowFirstPageWarning();
-                    return;
-                }
-                else if (TotalPageCnt > 0 && CurrentPage == TotalPageCnt && TargetPage == TotalPageCnt)
-                {
-                    ShowLastPageWarning();
-                    return;
-                }
-
-                CurrentPage = TargetPage;
-                QueryPage();        // 查询记录
+                QueryPage();
             }
             catch (Exception ex)
             {
                 ShowGoToPageError(ex);
-                return;
+                TargetPage = CurrentPage; // 回滚
             }
-
         }
 
         /// <summary>
-        /// 最后一页
+        /// 查询记录（子类必须重写）
         /// </summary>
-        public void LastPage(object? sender)
+        /// <remarks>需要更新 StartIndex 等属性</remarks>
+        protected virtual bool QueryPage()
         {
-            GoToPage(sender);
+            throw new NotImplementedException("请重写 QueryPage() 方法");
         }
 
-        #endregion Page
+        #endregion
 
-        #region Error
+        #region 提示对话框（可重写）
+        /// <summary>
+        /// 显示无数据提示
+        /// </summary>
+        protected virtual void ShowNoDataWarning()
+        {
+            MessageBox.Show("没有数据可显示!", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
 
         /// <summary>
-        /// 切换页面失败
+        /// 显示切换页面错误提示
         /// </summary>
+        /// <param name="ex"></param>
         protected virtual void ShowGoToPageError(Exception ex)
         {
             MessageBox.Show(ex.Message, "切换页面错误", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         /// <summary>
-        /// 页数太大回调方法
+        /// 显示目标页大于总页数的提示
         /// </summary>
         protected virtual void ShowTargetPageTooLargeWarning()
         {
@@ -282,7 +230,7 @@ namespace Zero.WPF.Core.MVVM
         }
 
         /// <summary>
-        /// 页数太小方法
+        /// 显示目标页小于等于0的提示
         /// </summary>
         protected virtual void ShowPageTooLessWarning()
         {
@@ -290,7 +238,7 @@ namespace Zero.WPF.Core.MVVM
         }
 
         /// <summary>
-        /// 已经是首页
+        /// 显示当前已经是首页的提示
         /// </summary>
         protected virtual void ShowFirstPageWarning()
         {
@@ -298,16 +246,13 @@ namespace Zero.WPF.Core.MVVM
         }
 
         /// <summary>
-        /// 已经是首页
+        /// 显示当前已经是尾页的提示
         /// </summary>
         protected virtual void ShowLastPageWarning()
         {
             MessageBox.Show("当前已经是尾页!", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        #endregion Error
-
-        #endregion Method
-
+        #endregion
     }
 }
