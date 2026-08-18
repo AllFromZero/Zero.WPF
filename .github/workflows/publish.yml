@@ -98,12 +98,7 @@ jobs:
 
     # ✅ 推送时带上占位符 API Key
     - name: Push to NuGet.org (OIDC)
-      run: |
-        echo "Pushing packages from ${{ env.PACKAGE_OUTPUT_DIR }}"
-        dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg" \
-          --api-key azure \
-          --source ${{ env.NUGET_SOURCE }} \
-          --skip-duplicate
+      run: dotnet nuget push artifacts/my-sdk.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
       shell: bash
 
     - name: Create GitHub Release
