@@ -304,8 +304,7 @@ namespace Zero.WPF.Core.MVVM
         [RelayCommand]
         private void Closing(object? sender)
         {
-            ViewClosingEvent?.Invoke(true);
-            OnClosing(sender);
+            ViewClosingEvent?.Invoke(OnClosing(sender));
         }
 
         /// <summary>
@@ -518,8 +517,9 @@ namespace Zero.WPF.Core.MVVM
         /// <summary>
         /// 关闭中
         /// </summary>
-        protected virtual void OnClosing(object? sender)
+        protected virtual bool OnClosing(object? sender)
         {
+            return true;
         }
 
         /// <summary>
@@ -552,15 +552,6 @@ namespace Zero.WPF.Core.MVVM
         }
 
         #endregion Virtual Methods
-
-        #region Public Command Properties (暴露给 XAML 使用)
-
-        // 这些命令属性由源代码生成器自动生成
-        // 命名规则：方法名 + Command
-        // 例如：EditCommand, ViewLoadedCommand, SaveCommand 等
-        // 无需手动编写，直接使用即可
-
-        #endregion Public Command Properties
 
         #region IDisposable Implementation
 

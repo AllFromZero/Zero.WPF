@@ -156,23 +156,14 @@ WPF项目MVVM相关基础配置类型。
 
 #### BrowserPageViewModel
 
-分页浏览试图模型，继承自[ViewModelBase](#viewmodelbase)
+分页浏览试图模型，继承自[ZeroViewModel](#zeroviewmodel)
 
 详见：[BrowserPageViewModel.md](/Docs/BrowserPageViewModel.md)
 
-#### NotifyPropertyChanged
-
-实现接口INotifyPropertyChanged，用户绑定参数更新。
-默认更新委托名为属性名称。
-
-#### RelayCommand
-
-实现ICommand接口，用于绑定命令。
-
-#### ViewModelBase
+#### ZeroViewModel
 
 试图模型基类。
-详见：[ViewModelBase.md](/Docs/ViewModelBase.md)
+详见：[ZeroViewModel.md](/Docs/ZeroViewModel.md)
 
 ## Zero.WPF.Resource
 

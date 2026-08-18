@@ -42,37 +42,67 @@
 | Prompt                | string?       | 提示           |
 | Visibility            | Visibility    | 可见属性       |
 
-## 方法
+## 私有方法
 
-| 函数                                               | 说明                                   |
-| -------------------------------------------------- | -------------------------------------- |
-| public virtual void Edit(object? sender)           | 编辑，默认半丁EditCommand              |
-| public virtual void ViewLoaded(object? sender)     | 页面加载，加载后 IsViewLoaded置为true  |
-| public virtual void ViewUnLoaded(object? sender)   | 卸载页面，卸载后 IsViewLoaded置为false |
-| public virtual void VisibleChanged(object? sender) | 可见属性变更                           |
-| public virtual void Import(object? sender)         | 导入函数                               |
-| public virtual void Print(object? sender)          | 打印函数                               |
-| public virtual void Preview(object? sender)        | 预览函数                               |
-| public virtual void Export(object? sender)         | 导出函数                               |
-| public virtual void Save(object? sender)           | 保存函数                               |
-| public virtual void SaveAs(object? sender)         | 另存为                                 |
-| public virtual void Add(object? sender)            | 添加函数                               |
-| public virtual void Delete(object? sender)         | 删除                                   |
-| public virtual void Modify(object? sender)         | 修改                                   |
-| public virtual void Revert(object? sender)         | 恢复函数                               |
-| public virtual void Query(object? sender)          | 查询函数                               |
-| public virtual void Refresh(object? sender)        | 刷新                                   |
-| public virtual void Cancel(object? sender)         | 取消                                   |
-| public virtual void Confirm(object? sender)        | 确认                                   |
-| public virtual void Upload(object? sender)         | 上传                                   |
-| public virtual void Download(object? sender)       | 下载                                   |
-| public virtual void Close(object? sender)          | 关闭                                   |
-| public virtual void Closing(object? sender)        | 关闭中                                 |
-| public virtual void Closed(object? sender)         | 已关闭                                 |
-| public virtual void DialogClose(object? sender)    | 对话框关闭                             |
-| public virtual void Login(object? sender)          | 登录                                   |
+| 函数                                        | 说明                                   |
+| ------------------------------------------- | -------------------------------------- |
+| private void Edit(object? sender)           | 编辑，默认半丁EditCommand              |
+| private void ViewLoaded(object? sender)     | 页面加载，加载后 IsViewLoaded置为true  |
+| private void ViewUnLoaded(object? sender)   | 卸载页面，卸载后 IsViewLoaded置为false |
+| private void VisibleChanged(object? sender) | 可见属性变更                           |
+| private void Import(object? sender)         | 导入函数                               |
+| private void Print(object? sender)          | 打印函数                               |
+| private void Preview(object? sender)        | 预览函数                               |
+| private void Export(object? sender)         | 导出函数                               |
+| private void Save(object? sender)           | 保存函数                               |
+| private void SaveAs(object? sender)         | 另存为                                 |
+| private void Add(object? sender)            | 添加函数                               |
+| private void Delete(object? sender)         | 删除                                   |
+| private void Modify(object? sender)         | 修改                                   |
+| private void Revert(object? sender)         | 恢复函数                               |
+| private void Query(object? sender)          | 查询函数                               |
+| private void Refresh(object? sender)        | 刷新                                   |
+| private void Cancel(object? sender)         | 取消                                   |
+| private void Confirm(object? sender)        | 确认                                   |
+| private void Upload(object? sender)         | 上传                                   |
+| private void Download(object? sender)       | 下载                                   |
+| private void Close(object? sender)          | 关闭                                   |
+| private void Closing(object? sender)        | 关闭中                                 |
+| private void Closed(object? sender)         | 已关闭                                 |
+| private void DialogClose(object? sender)    | 对话框关闭                             |
+| private void Login(object? sender)          | 登录                                   |
 
 使用时，Xaml界面绑定对应的Command，C#页面直接重写对应的方法即可，基类模型默认关联对应的函数方法。
+
+## 可重写方法
+
+| 函数                                                    | 说明                           |
+| ------------------------------------------------------- | ------------------------------ |
+| protected virtual void OnEdit(object? sender)           | 编辑，私有方法中调用，支持重写 |
+| protected virtual void OnViewLoaded(object? sender)     | 页面加载                       |
+| protected virtual void OnViewUnLoaded(object? sender)   | 卸载页面                       |
+| protected virtual void OnVisibleChanged(object? sender) | 可见属性变更                   |
+| protected virtual void OnImport(object? sender)         | 导入函数                       |
+| protected virtual void OnPrint(object? sender)          | 打印函数                       |
+| protected virtual void OnPreview(object? sender)        | 预览函数                       |
+| protected virtual void OnExport(object? sender)         | 导出函数                       |
+| protected virtual void OnSave(object? sender)           | 保存函数                       |
+| protected virtual void OnSaveAs(object? sender)         | 另存为                         |
+| protected virtual void OnAdd(object? sender)            | 添加函数                       |
+| protected virtual void OnDelete(object? sender)         | 删除                           |
+| protected virtual void OnModify(object? sender)         | 修改                           |
+| protected virtual void OnRevert(object? sender)         | 恢复函数                       |
+| protected virtual void OnQuery(object? sender)          | 查询函数                       |
+| protected virtual void OnRefresh(object? sender)        | 刷新                           |
+| protected virtual void OnCancel(object? sender)         | 取消                           |
+| protected virtual void OnConfirm(object? sender)        | 确认                           |
+| protected virtual void OnUpload(object? sender)         | 上传                           |
+| protected virtual void OnDownload(object? sender)       | 下载                           |
+| protected virtual void OnClose(object? sender)          | 关闭                           |
+| protected virtual void OnClosing(object? sender)        | 关闭中                         |
+| protected virtual void OnClosed(object? sender)         | 已关闭                         |
+| protected virtual void OnDialogClose(object? sender)    | 对话框关闭                     |
+| protected virtual void OnLogin(object? sender)          | 登录                           |
 
 ## 事件
 
@@ -167,7 +197,7 @@ ViewModel中触发关闭事件，这个事件默认再ViewModelBase中已经调�
         /// 关闭
         /// </summary>
         /// <param name="sender"></param>
-        public virtual void Close(object? sender)
+        private void Close(object? sender)
         {
             ViewCloseEvent?.Invoke();
         }
