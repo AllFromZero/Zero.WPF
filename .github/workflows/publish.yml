@@ -1,0 +1,44 @@
+name: Publish to NuGet
+
+# 1. 触发条件：当推送一个符合 "v*" 格式的标签时触发，例如 v1.0.0
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  PROJECT_PATH: 'Zero.WPF.csproj'      # 替换为你的项目文件路径
+  PACKAGE_OUTPUT_DIR: '${{ github.workspace }}/output'
+  NUGET_SOURCE: 'https://api.nuget.org/v3/index.json'
+
+jobs:
+  build-and-publish:
+    name: Build, Pack, and Publish
+    runs-on: ubuntu-latest
+
+    steps:
+    # 2. 检出代码
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 3. 设置 .NET SDK
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x' # 请根据你的项目需要调整版本
+
+    # 4. 恢复依赖
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+
+    # 5. 打包项目
+    - name: Build and Pack
+      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --configuration Release -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --output ${{ env.PACKAGE_OUTPUT_DIR }}
+
+    # 6. 发布到 NuGet.org
+    - name: Push NuGet Package
+      run: |
+        dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg" \
+          --api-key ${{ secrets.NUGET_API_KEY }} \
+          --source ${{ env.NUGET_SOURCE }} \
+          --skip-duplicate
