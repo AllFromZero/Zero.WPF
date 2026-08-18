@@ -96,16 +96,15 @@ jobs:
         Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR
       shell: pwsh
 
-    # ✅ 使用 PowerShell 执行推送
+    # ✅ 推送时带上占位符 API Key
     - name: Push to NuGet.org (OIDC)
       run: |
-        Write-Host "Pushing packages from $env:PACKAGE_OUTPUT_DIR"
-        Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR -Filter "*.nupkg" | ForEach-Object {
-          dotnet nuget push $_.FullName --source $env:NUGET_SOURCE --skip-duplicate
-        }
-      shell: pwsh
-      env:
-        NUGET_SOURCE: ${{ env.NUGET_SOURCE }}
+        echo "Pushing packages from ${{ env.PACKAGE_OUTPUT_DIR }}"
+        dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg" \
+          --api-key azure \
+          --source ${{ env.NUGET_SOURCE }} \
+          --skip-duplicate
+      shell: bash
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
