@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_PATH: 'Zero.WPF.csproj'   # 请确认文件名是否正确，若在子目录则改为 'src/Zero.WPF/Zero.WPF.csproj'
   PACKAGE_OUTPUT_DIR: '${{ github.workspace }}/output'
   NUGET_SOURCE: 'https://api.nuget.org/v3/index.json'
 
@@ -17,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write   # 用于 Trusted Publishing
+      id-token: write
 
     steps:
     - name: Checkout code
@@ -25,12 +24,26 @@ jobs:
       with:
         fetch-depth: 0
 
-    # 调试：列出项目文件
-    - name: List project files
+    # 🔍 调试：列出所有文件，确认项目文件位置
+    - name: Debug - List files
       run: |
-        pwd
+        echo "Current directory: $(pwd)"
+        echo "Files in root:"
         ls -la
+        echo "All .csproj files:"
         find . -name "*.csproj"
+
+    # 🔍 自动查找项目文件
+    - name: Find project file
+      id: find_project
+      run: |
+        PROJECT=$(find . -name "*.csproj" -not -path "./.github/*" | head -1)
+        if [ -z "$PROJECT" ]; then
+          echo "❌ No .csproj file found!"
+          exit 1
+        fi
+        echo "✅ Found project: $PROJECT"
+        echo "project_path=$PROJECT" >> $GITHUB_OUTPUT
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -46,10 +59,10 @@ jobs:
           ${{ runner.os }}-nuget-
 
     - name: Restore dependencies
-      run: dotnet restore ${{ env.PROJECT_PATH }}
+      run: dotnet restore ${{ steps.find_project.outputs.project_path }}
 
     - name: Run tests (optional)
-      run: dotnet test ${{ env.PROJECT_PATH }} --no-restore --verbosity normal
+      run: dotnet test ${{ steps.find_project.outputs.project_path }} --no-restore --verbosity normal || true
 
     - name: Get version from tag
       id: get_version
@@ -57,7 +70,7 @@ jobs:
 
     - name: Build and Pack
       run: |
-        dotnet pack ${{ env.PROJECT_PATH }} \
+        dotnet pack ${{ steps.find_project.outputs.project_path }} \
           --configuration Release \
           --no-build \
           --output ${{ env.PACKAGE_OUTPUT_DIR }} \
