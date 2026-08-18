@@ -97,8 +97,12 @@ jobs:
         Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR
       shell: pwsh
 
-    # ✅ 使用 find 自动查找 .nupkg 文件并推送
-    - name: Push to NuGet.org (OIDC)
+    - name: Login to NuGet.org
+      uses: NuGet/login@v1
+      with:
+        creds: '{"type":"external","provider":"github","owner":"AllFromZero","repo":"Zero.WPF","workflow":"publish.yml"}'
+
+    - name: Push to NuGet.org
       run: |
         echo "Searching for .nupkg files..."
         NUPKG_FILE=$(find . -name "*.nupkg" -type f | head -1)
