@@ -7,7 +7,8 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_PATH: 'Zero.WPF/Zero.WPF.csproj'
+  PROJECT_FOLDER: 'Zero.WPF'
+  PROJECT_FILE: 'Zero.WPF.csproj'
   PACKAGE_OUTPUT_DIR: '${{ github.workspace }}/output'
   NUGET_SOURCE: 'https://api.nuget.org/v3/index.json'
 
@@ -39,10 +40,10 @@ jobs:
           ${{ runner.os }}-nuget-
 
     - name: Restore dependencies
-      run: dotnet restore ${{ env.PROJECT_PATH }}
+      run: dotnet restore ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }}
 
     - name: Run tests (optional)
-      run: dotnet test ${{ env.PROJECT_PATH }} --no-restore --verbosity normal || true
+      run: dotnet test ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} --no-restore --verbosity normal || true
 
     - name: Get version from tag
       id: get_version
@@ -53,14 +54,19 @@ jobs:
         echo "version=$VERSION" >> $GITHUB_OUTPUT
       shell: bash
 
+    # 🔍 诊断：列出构建输出目录
+    - name: List build output (diagnostic)
+      run: |
+        echo "=== Listing ${{ env.PROJECT_FOLDER }}/bin/Release ==="
+        dir /s ${{ env.PROJECT_FOLDER }}\bin\Release || echo "Directory not found"
+      shell: cmd
+
     - name: Build and Pack
       run: |
+        cd ${{ env.PROJECT_FOLDER }}
         VERSION="${{ steps.get_version.outputs.version }}"
-        if [ -z "$VERSION" ]; then
-          VERSION="${{ env.VERSION }}"
-        fi
         echo "📦 Packing version: $VERSION"
-        dotnet pack ${{ env.PROJECT_PATH }} \
+        dotnet pack ${{ env.PROJECT_FILE }} \
           --configuration Release \
           --output ${{ env.PACKAGE_OUTPUT_DIR }} \
           -p:PackageVersion=$VERSION \
