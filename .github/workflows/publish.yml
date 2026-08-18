@@ -7,14 +7,14 @@ on:
   workflow_dispatch:
 
 env:
-  PROJECT_PATH: 'Zero.WPF/Zero.WPF.csproj'   # ✅ 项目文件实际路径
+  PROJECT_PATH: 'Zero.WPF/Zero.WPF.csproj'
   PACKAGE_OUTPUT_DIR: '${{ github.workspace }}/output'
   NUGET_SOURCE: 'https://api.nuget.org/v3/index.json'
 
 jobs:
   build-and-publish:
     name: Build, Pack, and Publish
-    runs-on: ubuntu-latest
+    runs-on: windows-latest   # ✅ 使用 Windows 运行器
     permissions:
       contents: write
       id-token: write          # 用于 NuGet Trusted Publishing (OIDC)
@@ -30,7 +30,6 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    # 可选：缓存 NuGet 包（加速构建）
     - name: Cache NuGet packages
       uses: actions/cache@v3
       with:
@@ -47,7 +46,11 @@ jobs:
 
     - name: Get version from tag
       id: get_version
-      run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+      run: echo "VERSION=${env:GITHUB_REF_NAME#v}" >> $env:GITHUB_OUTPUT
+      # 注意：Windows 上环境变量语法略有不同，但也可以用 bash 脚本（如果运行器默认是 PowerShell，建议改用 pwsh）
+      # 更稳妥的方式：使用 PowerShell 或直接使用 bash（git bash 在 Windows 也可用）
+      # 这里使用 bash 运行（默认 Windows 运行器也支持 bash）
+      shell: bash
 
     - name: Build and Pack
       run: |
@@ -59,13 +62,14 @@ jobs:
           -p:IncludeSymbols=true \
           -p:SymbolPackageFormat=snupkg \
           -p:ContinuousIntegrationBuild=true
+      shell: bash
 
-    # 使用 OIDC (Trusted Publishing) 推送，无需 API Key
-    - name: Push to NuGet.org
+    - name: Push to NuGet.org (OIDC)
       run: |
         dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg" \
           --source ${{ env.NUGET_SOURCE }} \
           --skip-duplicate
+      shell: bash
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
