@@ -113,7 +113,6 @@ jobs:
         fi
         echo "✅ Found: $NUPKG_FILE"
         dotnet nuget push "$NUPKG_FILE" \
-          --api-key azure \
           --source ${{ env.NUGET_SOURCE }} \
           --skip-duplicate
       shell: bash
