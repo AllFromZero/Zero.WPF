@@ -97,10 +97,11 @@ jobs:
         Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR
       shell: pwsh
 
+    # ✅ 使用 NuGet/login@v1 进行 OIDC 认证
     - name: Login to NuGet.org
       uses: NuGet/login@v1
       with:
-        creds: '{"type":"external","provider":"github","owner":"AllFromZero","repo":"Zero.WPF","workflow":"publish.yml"}'
+        user: AllFromZero
 
     - name: Push to NuGet.org
       run: |
