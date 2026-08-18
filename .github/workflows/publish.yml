@@ -55,25 +55,7 @@ jobs:
         echo "version=$VERSION" >> $GITHUB_OUTPUT
       shell: bash
 
-    # 🔨 关键步骤：构建项目（生成 DLL）
-    - name: Build project
-      run: |
-        cd ${{ env.PROJECT_FOLDER }}
-        dotnet build ${{ env.PROJECT_FILE }} --configuration Release --verbosity normal
-      shell: bash
-
-    # 🔍 诊断：使用 if exist 避免失败
-    - name: List build output (diagnostic)
-      run: |
-        echo "=== Current directory ==="
-        dir
-        echo "=== Contents of ${{ env.PROJECT_FOLDER }}/bin/Release ==="
-        if exist ${{ env.PROJECT_FOLDER }}\bin\Release (dir ${{ env.PROJECT_FOLDER }}\bin\Release) else echo "Release directory not found"
-        echo "=== Searching for .dll files ==="
-        dir /s *.dll 2>nul || echo "No dll files found"
-      shell: cmd
-
-    # 📦 打包（使用 --no-build，因为已经构建过）
+    # 🔨 直接打包（自带构建），不使用 --no-build
     - name: Pack
       run: |
         cd ${{ env.PROJECT_FOLDER }}
@@ -81,20 +63,26 @@ jobs:
         echo "📦 Packing version: $VERSION"
         dotnet pack ${{ env.PROJECT_FILE }} \
           --configuration Release \
-          --no-build \
           --output ${{ env.PACKAGE_OUTPUT_DIR }} \
           -p:PackageVersion=$VERSION \
           -p:IncludeSymbols=true \
           -p:SymbolPackageFormat=snupkg \
-          -p:ContinuousIntegrationBuild=true
+          -p:ContinuousIntegrationBuild=true \
+          -v normal
       shell: bash
+
+    # 🔍 诊断：列出输出目录内容
+    - name: List output directory
+      run: |
+        echo "=== Contents of ${{ env.PACKAGE_OUTPUT_DIR }} ==="
+        dir ${{ env.PACKAGE_OUTPUT_DIR }}
+      shell: cmd
 
     - name: Push to NuGet.org (OIDC)
       run: |
-        dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg" \
-          --source ${{ env.NUGET_SOURCE }} \
-          --skip-duplicate
-      shell: bash
+        # 使用具体路径，避免通配符问题
+        for /R "${{ env.PACKAGE_OUTPUT_DIR }}" %i in (*.nupkg) do dotnet nuget push "%i" --source ${{ env.NUGET_SOURCE }} --skip-duplicate
+      shell: cmd
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
