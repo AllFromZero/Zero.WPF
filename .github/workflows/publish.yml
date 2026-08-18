@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 env:
+  PROJECT_PATH: 'Zero.WPF/Zero.WPF.csproj'   # ✅ 项目文件实际路径
   PACKAGE_OUTPUT_DIR: '${{ github.workspace }}/output'
   NUGET_SOURCE: 'https://api.nuget.org/v3/index.json'
 
@@ -16,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write
+      id-token: write          # 用于 NuGet Trusted Publishing (OIDC)
 
     steps:
     - name: Checkout code
@@ -24,32 +25,12 @@ jobs:
       with:
         fetch-depth: 0
 
-    # 🔍 调试：列出所有文件，确认项目文件位置
-    - name: Debug - List files
-      run: |
-        echo "Current directory: $(pwd)"
-        echo "Files in root:"
-        ls -la
-        echo "All .csproj files:"
-        find . -name "*.csproj"
-
-    # 🔍 自动查找项目文件
-    - name: Find project file
-      id: find_project
-      run: |
-        PROJECT=$(find . -name "*.csproj" -not -path "./.github/*" | head -1)
-        if [ -z "$PROJECT" ]; then
-          echo "❌ No .csproj file found!"
-          exit 1
-        fi
-        echo "✅ Found project: $PROJECT"
-        echo "project_path=$PROJECT" >> $GITHUB_OUTPUT
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
 
+    # 可选：缓存 NuGet 包（加速构建）
     - name: Cache NuGet packages
       uses: actions/cache@v3
       with:
@@ -59,10 +40,10 @@ jobs:
           ${{ runner.os }}-nuget-
 
     - name: Restore dependencies
-      run: dotnet restore ${{ steps.find_project.outputs.project_path }}
+      run: dotnet restore ${{ env.PROJECT_PATH }}
 
     - name: Run tests (optional)
-      run: dotnet test ${{ steps.find_project.outputs.project_path }} --no-restore --verbosity normal || true
+      run: dotnet test ${{ env.PROJECT_PATH }} --no-restore --verbosity normal || true
 
     - name: Get version from tag
       id: get_version
@@ -70,7 +51,7 @@ jobs:
 
     - name: Build and Pack
       run: |
-        dotnet pack ${{ steps.find_project.outputs.project_path }} \
+        dotnet pack ${{ env.PROJECT_PATH }} \
           --configuration Release \
           --no-build \
           --output ${{ env.PACKAGE_OUTPUT_DIR }} \
@@ -79,7 +60,8 @@ jobs:
           -p:SymbolPackageFormat=snupkg \
           -p:ContinuousIntegrationBuild=true
 
-    - name: Push to NuGet.org (OIDC)
+    # 使用 OIDC (Trusted Publishing) 推送，无需 API Key
+    - name: Push to NuGet.org
       run: |
         dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg" \
           --source ${{ env.NUGET_SOURCE }} \
