@@ -99,6 +99,7 @@ jobs:
 
     # ✅ 使用 NuGet/login@v1 进行 OIDC 认证
     - name: Login to NuGet.org
+      id: nuget_auth
       uses: NuGet/login@v1
       with:
         user: AllFromZero
@@ -113,6 +114,7 @@ jobs:
         fi
         echo "✅ Found: $NUPKG_FILE"
         dotnet nuget push "$NUPKG_FILE" \
+          --api-key ${{ steps.nuget_auth.outputs.NUGET_API_KEY }} \
           --source ${{ env.NUGET_SOURCE }} \
           --skip-duplicate
       shell: bash
