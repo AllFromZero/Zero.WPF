@@ -55,29 +55,25 @@ jobs:
         echo "version=$VERSION" >> $GITHUB_OUTPUT
       shell: bash
 
-    # 🔨 关键步骤：构建项目
+    # 🔨 关键步骤：构建项目（生成 DLL）
     - name: Build project
       run: |
         cd ${{ env.PROJECT_FOLDER }}
         dotnet build ${{ env.PROJECT_FILE }} --configuration Release --verbosity normal
       shell: bash
 
-    # 🔍 诊断：列出构建输出（不因目录不存在而失败）
+    # 🔍 诊断：使用 if exist 避免失败
     - name: List build output (diagnostic)
       run: |
         echo "=== Current directory ==="
         dir
-        echo "=== Contents of ${{ env.PROJECT_FOLDER }} ==="
-        dir ${{ env.PROJECT_FOLDER }}
-        echo "=== Contents of ${{ env.PROJECT_FOLDER }}/bin ==="
-        if exist ${{ env.PROJECT_FOLDER }}\bin (dir ${{ env.PROJECT_FOLDER }}\bin) else echo "bin directory not found"
         echo "=== Contents of ${{ env.PROJECT_FOLDER }}/bin/Release ==="
         if exist ${{ env.PROJECT_FOLDER }}\bin\Release (dir ${{ env.PROJECT_FOLDER }}\bin\Release) else echo "Release directory not found"
         echo "=== Searching for .dll files ==="
         dir /s *.dll 2>nul || echo "No dll files found"
       shell: cmd
 
-    # 📦 打包
+    # 📦 打包（使用 --no-build，因为已经构建过）
     - name: Pack
       run: |
         cd ${{ env.PROJECT_FOLDER }}
