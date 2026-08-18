@@ -89,21 +89,23 @@ jobs:
           -p:ContinuousIntegrationBuild=true
       shell: bash
       
-    # 🔍 列出输出目录（使用环境变量，避免路径解析问题）
+    # ✅ 使用 PowerShell 列出目录，避免路径解析问题
     - name: List output directory
       run: |
-        echo "=== Contents of %PACKAGE_OUTPUT_DIR% ==="
-        dir %PACKAGE_OUTPUT_DIR%
-      shell: cmd
+        Write-Host "=== Contents of $env:PACKAGE_OUTPUT_DIR ==="
+        Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR
+      shell: pwsh
 
-    # 🚀 推送（同样使用环境变量）
+    # ✅ 使用 PowerShell 执行推送
     - name: Push to NuGet.org (OIDC)
       run: |
-        echo "Pushing packages from %PACKAGE_OUTPUT_DIR%"
-        dotnet nuget push "%PACKAGE_OUTPUT_DIR%\\*.nupkg" \
-          --source ${{ env.NUGET_SOURCE }} \
-          --skip-duplicate
-      shell: cmd
+        Write-Host "Pushing packages from $env:PACKAGE_OUTPUT_DIR"
+        Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR -Filter "*.nupkg" | ForEach-Object {
+          dotnet nuget push $_.FullName --source $env:NUGET_SOURCE --skip-duplicate
+        }
+      shell: pwsh
+      env:
+        NUGET_SOURCE: ${{ env.NUGET_SOURCE }}
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
