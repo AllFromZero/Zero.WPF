@@ -14,10 +14,10 @@ env:
 jobs:
   build-and-publish:
     name: Build, Pack, and Publish
-    runs-on: windows-latest   # ✅ 使用 Windows 运行器
+    runs-on: windows-latest
     permissions:
       contents: write
-      id-token: write          # 用于 NuGet Trusted Publishing (OIDC)
+      id-token: write
 
     steps:
     - name: Checkout code
@@ -44,21 +44,38 @@ jobs:
     - name: Run tests (optional)
       run: dotnet test ${{ env.PROJECT_PATH }} --no-restore --verbosity normal || true
 
+    # ✅ 增强版本提取步骤
     - name: Get version from tag
       id: get_version
-      run: echo "VERSION=${env:GITHUB_REF_NAME#v}" >> $env:GITHUB_OUTPUT
-      # 注意：Windows 上环境变量语法略有不同，但也可以用 bash 脚本（如果运行器默认是 PowerShell，建议改用 pwsh）
-      # 更稳妥的方式：使用 PowerShell 或直接使用 bash（git bash 在 Windows 也可用）
-      # 这里使用 bash 运行（默认 Windows 运行器也支持 bash）
+      run: |
+        # 去掉前缀 'v'
+        VERSION=${GITHUB_REF_NAME#v}
+        if [ -z "$VERSION" ]; then
+          echo "❌ Error: GITHUB_REF_NAME is empty or does not start with 'v'"
+          exit 1
+        fi
+        echo "✅ Extracted version: $VERSION"
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Build and Pack
       run: |
+        # 从输出获取版本，如果为空则使用环境变量作为后备
+        VERSION="${{ steps.get_version.outputs.version }}"
+        if [ -z "$VERSION" ]; then
+          VERSION="${{ env.VERSION }}"
+        fi
+        if [ -z "$VERSION" ]; then
+          echo "❌ Error: No version available"
+          exit 1
+        fi
+        echo "📦 Packing version: $VERSION"
         dotnet pack ${{ env.PROJECT_PATH }} \
           --configuration Release \
           --no-build \
           --output ${{ env.PACKAGE_OUTPUT_DIR }} \
-          -p:PackageVersion=${{ steps.get_version.outputs.VERSION }} \
+          -p:PackageVersion=$VERSION \
           -p:IncludeSymbols=true \
           -p:SymbolPackageFormat=snupkg \
           -p:ContinuousIntegrationBuild=true
