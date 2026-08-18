@@ -55,20 +55,37 @@ jobs:
         echo "version=$VERSION" >> $GITHUB_OUTPUT
       shell: bash
 
-    # 🔍 诊断：列出构建输出目录
+    # 🔨 关键步骤：构建项目
+    - name: Build project
+      run: |
+        cd ${{ env.PROJECT_FOLDER }}
+        dotnet build ${{ env.PROJECT_FILE }} --configuration Release --verbosity normal
+      shell: bash
+
+    # 🔍 诊断：列出构建输出（不因目录不存在而失败）
     - name: List build output (diagnostic)
       run: |
-        echo "=== Listing ${{ env.PROJECT_FOLDER }}/bin/Release ==="
-        dir /s ${{ env.PROJECT_FOLDER }}\bin\Release || echo "Directory not found"
+        echo "=== Current directory ==="
+        dir
+        echo "=== Contents of ${{ env.PROJECT_FOLDER }} ==="
+        dir ${{ env.PROJECT_FOLDER }}
+        echo "=== Contents of ${{ env.PROJECT_FOLDER }}/bin ==="
+        if exist ${{ env.PROJECT_FOLDER }}\bin (dir ${{ env.PROJECT_FOLDER }}\bin) else echo "bin directory not found"
+        echo "=== Contents of ${{ env.PROJECT_FOLDER }}/bin/Release ==="
+        if exist ${{ env.PROJECT_FOLDER }}\bin\Release (dir ${{ env.PROJECT_FOLDER }}\bin\Release) else echo "Release directory not found"
+        echo "=== Searching for .dll files ==="
+        dir /s *.dll 2>nul || echo "No dll files found"
       shell: cmd
 
-    - name: Build and Pack
+    # 📦 打包
+    - name: Pack
       run: |
         cd ${{ env.PROJECT_FOLDER }}
         VERSION="${{ steps.get_version.outputs.version }}"
         echo "📦 Packing version: $VERSION"
         dotnet pack ${{ env.PROJECT_FILE }} \
           --configuration Release \
+          --no-build \
           --output ${{ env.PACKAGE_OUTPUT_DIR }} \
           -p:PackageVersion=$VERSION \
           -p:IncludeSymbols=true \
