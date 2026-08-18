@@ -41,7 +41,10 @@ jobs:
           ${{ runner.os }}-nuget-
 
     - name: Restore dependencies
-      run: dotnet restore "${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }}" --force
+      run: dotnet restore ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }}
+
+    - name: Run tests (optional)
+      run: dotnet test ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} --no-restore --verbosity normal || true
 
     - name: Get version from tag
       id: get_version
@@ -52,48 +55,56 @@ jobs:
         echo "version=$VERSION" >> $GITHUB_OUTPUT
       shell: bash
 
-    # 🔧 关键修改：让 dotnet pack 自己完成构建（不使用 --no-build）
+    # 🔨 构建（使用完整相对路径）
+    - name: Build project
+      run: |
+        dotnet build ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} --configuration Release --verbosity normal
+      shell: bash
+
+    # 🔍 验证 DLL
+    - name: Verify DLL exists
+      run: |
+        if exist "${{ env.PROJECT_FOLDER }}\bin\Release\net10.0-windows\Zero.WPF.dll" (
+          echo "✅ DLL found"
+          dir "${{ env.PROJECT_FOLDER }}\bin\Release\net10.0-windows"
+        ) else (
+          echo "❌ DLL not found"
+          dir ${{ env.PROJECT_FOLDER }}\bin\Release || echo "No Release folder"
+          exit 1
+        )
+      shell: cmd
+
+    # 📦 打包（同样使用完整路径）
     - name: Pack
       run: |
         VERSION="${{ steps.get_version.outputs.version }}"
         echo "📦 Packing version: $VERSION"
         dotnet pack "${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }}" \
           --configuration Release \
+          --no-build \
           --output "${{ env.PACKAGE_OUTPUT_DIR }}" \
           -p:PackageVersion=$VERSION \
           -p:IncludeSymbols=true \
           -p:SymbolPackageFormat=snupkg \
           -p:ContinuousIntegrationBuild=true
       shell: bash
-
-    # 🔍 调试：列出输出目录
+      
+    # ✅ 使用 PowerShell 列出目录，避免路径解析问题
     - name: List output directory
       run: |
         Write-Host "=== Contents of $env:PACKAGE_OUTPUT_DIR ==="
-        Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR -Force
+        Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR
       shell: pwsh
-      env:
-        PACKAGE_OUTPUT_DIR: ${{ env.PACKAGE_OUTPUT_DIR }}
 
-    # 🚀 推送：使用 PowerShell 遍历文件，逐个推送
+    # ✅ 推送时带上占位符 API Key
     - name: Push to NuGet.org (OIDC)
       run: |
-        $packages = Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR -Filter "*.nupkg"
-        if ($packages.Count -eq 0) {
-          Write-Error "No .nupkg files found in $env:PACKAGE_OUTPUT_DIR"
-          exit 1
-        }
-        foreach ($pkg in $packages) {
-          Write-Host "Pushing $($pkg.FullName)"
-          dotnet nuget push $pkg.FullName `
-            --api-key azure `
-            --source $env:NUGET_SOURCE `
-            --skip-duplicate
-        }
-      shell: pwsh
-      env:
-        PACKAGE_OUTPUT_DIR: ${{ env.PACKAGE_OUTPUT_DIR }}
-        NUGET_SOURCE: ${{ env.NUGET_SOURCE }}
+        echo "Pushing packages from ${{ env.PACKAGE_OUTPUT_DIR }}"
+        dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg" \
+          --api-key azure \
+          --source ${{ env.NUGET_SOURCE }} \
+          --skip-duplicate
+      shell: bash
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
