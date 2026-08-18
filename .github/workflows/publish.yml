@@ -95,38 +95,21 @@ jobs:
         Write-Host "=== Contents of $env:PACKAGE_OUTPUT_DIR ==="
         Get-ChildItem -Path $env:PACKAGE_OUTPUT_DIR
       shell: pwsh
-
-    # 🔍 调试：列出所有 .nupkg 文件
-    - name: Find nupkg files
-      run: |
-        echo "Searching for .nupkg files..."
-        find . -name "*.nupkg" -type f
-      shell: bash
-
-    # 🚀 推送：使用实际存在的路径（注意多了一层 PROJECT_FOLDER）
+      
+    # ✅ 使用 find 自动查找 .nupkg 文件并推送
     - name: Push to NuGet.org (OIDC)
       run: |
-        # 尝试多个可能的路径
-        PACKAGE_PATH="${{ github.workspace }}/${{ env.PROJECT_FOLDER }}/output/*.nupkg"
-        if ls $PACKAGE_PATH 1> /dev/null 2>&1; then
-          echo "Found packages at $PACKAGE_PATH"
-          dotnet nuget push "$PACKAGE_PATH" \
-            --api-key azure \
-            --source ${{ env.NUGET_SOURCE }} \
-            --skip-duplicate
-        else
-          echo "Trying root output path..."
-          PACKAGE_PATH2="${{ github.workspace }}/output/*.nupkg"
-          if ls $PACKAGE_PATH2 1> /dev/null 2>&1; then
-            dotnet nuget push "$PACKAGE_PATH2" \
-              --api-key azure \
-              --source ${{ env.NUGET_SOURCE }} \
-              --skip-duplicate
-          else
-            echo "❌ No .nupkg files found."
-            exit 1
-          fi
+        echo "Searching for .nupkg files..."
+        NUPKG_FILE=$(find . -name "*.nupkg" -type f | head -1)
+        if [ -z "$NUPKG_FILE" ]; then
+          echo "❌ No .nupkg files found!"
+          exit 1
         fi
+        echo "✅ Found: $NUPKG_FILE"
+        dotnet nuget push "$NUPKG_FILE" \
+          --api-key azure \
+          --source ${{ env.NUGET_SOURCE }} \
+          --skip-duplicate
       shell: bash
 
     - name: Create GitHub Release
