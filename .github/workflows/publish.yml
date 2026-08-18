@@ -55,6 +55,7 @@ jobs:
         echo "version=$VERSION" >> $GITHUB_OUTPUT
       shell: bash
 
+    # 🔨 直接打包（自带构建），不使用 --no-build
     - name: Pack
       run: |
         cd ${{ env.PROJECT_FOLDER }}
@@ -66,24 +67,22 @@ jobs:
           -p:PackageVersion=$VERSION \
           -p:IncludeSymbols=true \
           -p:SymbolPackageFormat=snupkg \
-          -p:ContinuousIntegrationBuild=true
+          -p:ContinuousIntegrationBuild=true \
+          -v normal
       shell: bash
 
-    # 🔍 诊断：列出输出目录
+    # 🔍 诊断：列出输出目录内容
     - name: List output directory
       run: |
         echo "=== Contents of ${{ env.PACKAGE_OUTPUT_DIR }} ==="
         dir ${{ env.PACKAGE_OUTPUT_DIR }}
       shell: cmd
 
-    # ✅ 使用 OIDC 推送，路径使用环境变量
     - name: Push to NuGet.org (OIDC)
       run: |
-        echo "Pushing packages from ${{ env.PACKAGE_OUTPUT_DIR }}"
-        dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}\\*.nupkg" \
-          --source ${{ env.NUGET_SOURCE }} \
-          --skip-duplicate
-      shell: bash
+        # 使用具体路径，避免通配符问题
+        for /R "${{ env.PACKAGE_OUTPUT_DIR }}" %i in (*.nupkg) do dotnet nuget push "%i" --source ${{ env.NUGET_SOURCE }} --skip-duplicate
+      shell: cmd
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
