@@ -44,16 +44,10 @@ jobs:
     - name: Run tests (optional)
       run: dotnet test ${{ env.PROJECT_PATH }} --no-restore --verbosity normal || true
 
-    # ✅ 增强版本提取步骤
     - name: Get version from tag
       id: get_version
       run: |
-        # 去掉前缀 'v'
         VERSION=${GITHUB_REF_NAME#v}
-        if [ -z "$VERSION" ]; then
-          echo "❌ Error: GITHUB_REF_NAME is empty or does not start with 'v'"
-          exit 1
-        fi
         echo "✅ Extracted version: $VERSION"
         echo "VERSION=$VERSION" >> $GITHUB_ENV
         echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -61,19 +55,13 @@ jobs:
 
     - name: Build and Pack
       run: |
-        # 从输出获取版本，如果为空则使用环境变量作为后备
         VERSION="${{ steps.get_version.outputs.version }}"
         if [ -z "$VERSION" ]; then
           VERSION="${{ env.VERSION }}"
         fi
-        if [ -z "$VERSION" ]; then
-          echo "❌ Error: No version available"
-          exit 1
-        fi
         echo "📦 Packing version: $VERSION"
         dotnet pack ${{ env.PROJECT_PATH }} \
           --configuration Release \
-          --no-build \
           --output ${{ env.PACKAGE_OUTPUT_DIR }} \
           -p:PackageVersion=$VERSION \
           -p:IncludeSymbols=true \
