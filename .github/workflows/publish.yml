@@ -3,11 +3,11 @@ name: Publish to NuGet
 on:
   push:
     tags:
-      - 'v*'               # 推送 v1.0.0, v2.0.0-beta 等标签触发
-  workflow_dispatch:        # 允许手动触发（测试用）
+      - 'v*'
+  workflow_dispatch:
 
 env:
-  PROJECT_PATH: 'Zero.WPF.csproj'
+  PROJECT_PATH: 'Zero.WPF.csproj'   # 请确认文件名是否正确，若在子目录则改为 'src/Zero.WPF/Zero.WPF.csproj'
   PACKAGE_OUTPUT_DIR: '${{ github.workspace }}/output'
   NUGET_SOURCE: 'https://api.nuget.org/v3/index.json'
 
@@ -16,21 +16,27 @@ jobs:
     name: Build, Pack, and Publish
     runs-on: ubuntu-latest
     permissions:
-      contents: write        # 用于创建 GitHub Release
-      id-token: write        # 🔑 用于 OIDC 身份验证（Trusted Publishing）
+      contents: write
+      id-token: write   # 用于 Trusted Publishing
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0       # 获取所有历史（如果需要从 Git 元数据生成版本号）
+        fetch-depth: 0
+
+    # 调试：列出项目文件
+    - name: List project files
+      run: |
+        pwd
+        ls -la
+        find . -name "*.csproj"
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
 
-    # 可选：缓存 NuGet 包
     - name: Cache NuGet packages
       uses: actions/cache@v3
       with:
@@ -60,8 +66,7 @@ jobs:
           -p:SymbolPackageFormat=snupkg \
           -p:ContinuousIntegrationBuild=true
 
-    # ✅ 使用 OIDC (Trusted Publishing) 推送，无需 API Key
-    - name: Push to NuGet.org
+    - name: Push to NuGet.org (OIDC)
       run: |
         dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg" \
           --source ${{ env.NUGET_SOURCE }} \
@@ -72,6 +77,6 @@ jobs:
       with:
         files: ${{ env.PACKAGE_OUTPUT_DIR }}/*.nupkg
         generate_release_notes: true
-        prerelease: ${{ contains(github.ref_name, '-') }}  # 如果标签包含 '-'，则标记为预发布
+        prerelease: ${{ contains(github.ref_name, '-') }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
