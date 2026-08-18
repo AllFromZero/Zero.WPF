@@ -5,7 +5,7 @@ namespace Zero.WPF.Core.MVVM
     /// <summary>
     /// 页面导航视图模型
     /// </summary>
-    public class BrowserPageViewModel : ViewModelBase
+    public class BrowserPageViewModel : ZeroViewModel
     {
         #region Private Property
 
