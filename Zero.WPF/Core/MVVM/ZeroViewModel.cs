@@ -338,6 +338,24 @@ namespace Zero.WPF.Core.MVVM
             OnLogin(sender);
         }
 
+        /// <summary>
+        /// 激活命令
+        /// </summary>
+        [RelayCommand]
+        private void Activate(object? sender)
+        {
+            OnActivate(sender);
+        }
+
+        /// <summary>
+        /// 启动命令
+        /// </summary>
+        [RelayCommand]
+        private void Enable(object? sender)
+        {
+            OnEnable(sender);
+        }
+
         #endregion Commands
 
         #region Async Commands (异步命令)
@@ -491,9 +509,23 @@ namespace Zero.WPF.Core.MVVM
         }
 
         /// <summary>
+        /// 激活
+        /// </summary>
+        protected virtual void OnActivate(object? sender)
+        {
+        }
+
+        /// <summary>
         /// 删除
         /// </summary>
         protected virtual void OnDelete(object? sender)
+        {
+        }
+
+        /// <summary>
+        /// 启用
+        /// </summary>
+        protected virtual void OnEnable(object? sender)
         {
         }
 
