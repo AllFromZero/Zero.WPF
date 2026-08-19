@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System;
+using System.Diagnostics.Contracts;
 using System.Reflection.Metadata;
 using System.Windows;
 using System.Windows.Input;
@@ -17,7 +18,7 @@ namespace Zero.WPF.Core.MVVM
         /// <summary>
         /// 释放资源标识
         /// </summary>
-        private bool _isDisposed;
+        private bool _isDisposed = false;
 
         #endregion Private Fields
 
@@ -130,8 +131,8 @@ namespace Zero.WPF.Core.MVVM
         [RelayCommand]
         private void ViewLoaded(object? sender)
         {
-            IsViewLoaded = true;
             OnViewLoaded(sender);
+            IsViewLoaded = true;
         }
 
         /// <summary>
@@ -140,8 +141,8 @@ namespace Zero.WPF.Core.MVVM
         [RelayCommand]
         private void ViewUnLoaded(object? sender)
         {
-            IsViewLoaded = false;
             OnViewUnLoaded(sender);
+            IsViewLoaded = false;
         }
 
         /// <summary>
@@ -294,8 +295,8 @@ namespace Zero.WPF.Core.MVVM
         [RelayCommand]
         private void Close(object? sender)
         {
-            ViewCloseEvent?.Invoke();
             OnClose(sender);
+            ViewCloseEvent?.Invoke();
         }
 
         /// <summary>
@@ -313,8 +314,8 @@ namespace Zero.WPF.Core.MVVM
         [RelayCommand]
         private void Closed(object? sender)
         {
-            ViewClosedEvent?.Invoke();
             OnClosed(sender);
+            ViewClosedEvent?.Invoke();
         }
 
         /// <summary>
@@ -324,8 +325,8 @@ namespace Zero.WPF.Core.MVVM
         private void DialogClose(object? sender)
         {
             bool? result = sender as bool?;
-            DialogCloseEvent?.Invoke(result);
             OnDialogClose(sender);
+            DialogCloseEvent?.Invoke(result);
         }
 
         /// <summary>
@@ -345,7 +346,7 @@ namespace Zero.WPF.Core.MVVM
         /// 异步加载命令示例
         /// </summary>
         [RelayCommand]
-        private async System.Threading.Tasks.Task LoadDataAsync(object? sender)
+        private async Task LoadDataAsync(object? sender)
         {
             if (IsBusy) return;
 
@@ -364,6 +365,51 @@ namespace Zero.WPF.Core.MVVM
         }
 
         #endregion Async Commands
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public ZeroViewModel()
+        {
+
+        }
+
+        #region Event Invokers (事件触发器)
+
+        /// <summary>
+        /// 触发视图关闭事件
+        /// </summary>
+        public void RaiseViewCloseEvent()
+        {
+            ViewCloseEvent?.Invoke();
+        }
+
+        /// <summary>
+        /// 触发窗体关闭中事件
+        /// </summary>
+        /// <param name="result"></param>
+        public void RaiseViewClosingEvent(bool result)
+        {
+            ViewClosingEvent?.Invoke(result);
+        }
+
+        /// <summary>
+        /// 触发窗体已关闭事件
+        /// </summary>
+        public void RaiseViewClosedEvent()
+        {
+            ViewClosedEvent?.Invoke();
+        }
+
+        /// <summary>
+        /// 触发弹窗已关闭事件
+        /// </summary>
+        public void RaiseDialogCloseEvent(bool? result)
+        {
+            DialogCloseEvent?.Invoke(result);
+        }
+
+        #endregion Event Invokers
 
         #region Virtual Methods (可重写方法)
 
@@ -546,9 +592,9 @@ namespace Zero.WPF.Core.MVVM
         /// <summary>
         /// 异步加载数据（子类可重写）
         /// </summary>
-        protected virtual System.Threading.Tasks.Task OnLoadDataAsync(object? sender)
+        protected virtual Task OnLoadDataAsync(object? sender)
         {
-            return System.Threading.Tasks.Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         #endregion Virtual Methods
@@ -602,7 +648,7 @@ namespace Zero.WPF.Core.MVVM
         /// <summary>
         /// 初始化方法，在参数设置后调用
         /// </summary>
-        public virtual System.Threading.Tasks.Task InitializeAsync(TParameter? parameter)
+        public virtual Task InitializeAsync(TParameter? parameter)
         {
             Parameter = parameter;
             return OnInitializedAsync();
@@ -611,9 +657,9 @@ namespace Zero.WPF.Core.MVVM
         /// <summary>
         /// 初始化完成后的回调
         /// </summary>
-        protected virtual System.Threading.Tasks.Task OnInitializedAsync()
+        protected virtual Task OnInitializedAsync()
         {
-            return System.Threading.Tasks.Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }
