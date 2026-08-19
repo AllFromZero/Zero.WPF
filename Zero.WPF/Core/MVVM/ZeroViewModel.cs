@@ -305,7 +305,8 @@ namespace Zero.WPF.Core.MVVM
         [RelayCommand]
         private void Closing(object? sender)
         {
-            ViewClosingEvent?.Invoke(OnClosing(sender));
+            bool result = OnClosing(sender);
+            ViewClosingEvent?.Invoke(result);
         }
 
         /// <summary>
