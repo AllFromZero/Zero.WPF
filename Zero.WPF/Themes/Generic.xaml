@@ -11,6 +11,7 @@
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroButton.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroLabel.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroNumericBox.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroNavigationBar.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroRadioButton.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroSwitchButton.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroTextBox.xaml"/>

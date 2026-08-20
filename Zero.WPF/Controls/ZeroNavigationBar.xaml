@@ -4,8 +4,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Zero.WPF;component/Themes/ZeroDefault.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    
-    <Style TargetType="{x:Type local:ZeroLabel}">
+
+    <Style TargetType="{x:Type local:ZeroNavigationBar}">
         <Setter Property="FontFamily" Value="{StaticResource Zero.FontFamily}"/>
         <Setter Property="FontSize" Value="{StaticResource Zero.FontSize}"/>
         <Setter Property="Foreground" Value="{StaticResource Zero.Static.Foreground}"/>
@@ -19,7 +19,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:ZeroLabel}">
+                <ControlTemplate TargetType="{x:Type local:ZeroNavigationBar}">
                     <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding Path=CornerRadius,RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
