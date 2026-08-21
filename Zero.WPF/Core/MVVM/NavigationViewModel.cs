@@ -25,16 +25,18 @@ namespace Zero.WPF.Core.MVVM
         public partial int TotalPageCnt { get; set; } = 1;
 
         /// <summary>
-        /// 当前页
-        /// </summary>
-        [ObservableProperty]
-        public partial int CurrentPage { get; set; } = 1;
-
-        /// <summary>
         /// 当前页面起始数据编号
         /// </summary>
+        /// <remarks>查询数据后自动计算</remarks>
         [ObservableProperty]
-        public partial int StartIndex { get; set; } = 0;
+        public partial int StartIndex { get; set; } = 1;
+
+        /// <summary>
+        /// 查询时要跳过的数据数
+        /// </summary>
+        /// <remarks>根据目标页自动计算，配合sql的Offset或者EF Core的Skip方法使用</remarks>
+        [ObservableProperty]
+        public partial int QuerySkipCnt { get; set; } = 0;
 
         #endregion
 
@@ -47,6 +49,11 @@ namespace Zero.WPF.Core.MVVM
         /// 单页记录数量（默认100，最小值1）
         /// </summary>
         private int _onePageCount = 100;
+
+        /// <summary>
+        /// 当前页
+        /// </summary>
+        public int _currentPage = 1;
 
         /// <summary>
         /// 总记录数（设置时自动计算总页数）
@@ -89,6 +96,22 @@ namespace Zero.WPF.Core.MVVM
                     {
                         TotalPageCnt = CalculatePageCount(_totalDataCnt, validValue);
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 单页记录数量（默认100，最小值1）
+        /// </summary>
+        public int CurrentPage
+        {
+            get => _currentPage;
+            set
+            {
+                var validValue = value <= 0 ? 1 : value;
+                if (SetProperty(ref _currentPage, validValue))
+                {
+                    StartIndex = OnePageCnt * (TargetPage - 1) + 1;
                 }
             }
         }
@@ -187,6 +210,8 @@ namespace Zero.WPF.Core.MVVM
                 TargetPage = CurrentPage;
                 return;
             }
+
+            QuerySkipCnt = OnePageCnt * (TargetPage - 1); 
 
             // 更新当前页并查询
             try
