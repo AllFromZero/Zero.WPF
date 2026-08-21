@@ -4,19 +4,20 @@
 
 ## 属性
 
-| 属性名              | 参数         | 说明                                              |
-| ------------------- | ------------ | ------------------------------------------------- |
-| FirstPageCommand    | RelayCommand | 用于设置控件外边框的圆角属性                      |
-| PreviousPageCommand | RelayCommand |                                                   |
-| NextPageCommand     | RelayCommand | 用于设置图标相对应文本的位置                      |
-| LastPageCommand     | RelayCommand | 设置图标的边距，默认设置图标在左，与右侧文本间距5 |
-| GotoPageCommand     | RelayCommand | 蒙版颜色画刷，可设置鼠标移过和下按时的颜色属性    |
-| TargetPage          | int          | 目标页数                                          |
-| TotalCnt            | int          | 数据总数                                          |
-| TotalPageCnt        | int          | 总页数                                            |
-| CurrentPage         | int          | 当前页面                                          |
-| StartIndex          | int          | 当前页面起始数据编号                              |
-| OnePageCnt          | int          | 单页记录数量                                      |
+| 属性名              | 参数         | 说明                                                                         |
+| ------------------- | ------------ | ---------------------------------------------------------------------------- |
+| FirstPageCommand    | RelayCommand | 用于设置控件外边框的圆角属性                                                 |
+| PreviousPageCommand | RelayCommand |                                                                              |
+| NextPageCommand     | RelayCommand | 用于设置图标相对应文本的位置                                                 |
+| LastPageCommand     | RelayCommand | 设置图标的边距，默认设置图标在左，与右侧文本间距5                            |
+| GotoPageCommand     | RelayCommand | 蒙版颜色画刷，可设置鼠标移过和下按时的颜色属性                               |
+| TargetPage          | int          | 目标页数                                                                     |
+| TotalCnt            | int          | 数据总数                                                                     |
+| TotalPageCnt        | int          | 总页数                                                                       |
+| CurrentPage         | int          | 当前页面                                                                     |
+| StartIndex          | int          | 当前页面起始数据编号                                                         |
+| OnePageCnt          | int          | 单页记录数量                                                                 |
+| QuerySkipCnt        | int          | 查询时需要跳过的数据数，自动计算，配合sql的Offset或者EF Core的Skip方法使用。 |
 
 ## 私有方法
 
