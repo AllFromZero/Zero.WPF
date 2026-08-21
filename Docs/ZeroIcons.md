@@ -553,6 +553,7 @@
 |![e937](Images/e937.png)|E937|Zero.IconCode.FlickLeft|
 |![e938](Images/e938.png)|E938|Zero.IconCode.FlickRight|
 |![e936](Images/e936.png)|E936|Zero.IconCode.FlickUp|
+|![e936](Images/e5b0.png)|E5B0|Zero.IconCode.First|
 |![ef90](Images/ef90.png)|EF90|Zero.IconCode.Flow|
 |![EF90](Images/ef90.png)|EF90|Zero.IconCode.FlowConfig|
 |![e8b7](Images/e8b7.png)|E8B7|Zero.IconCode.Folder|
@@ -743,6 +744,7 @@
 |![f12a](Images/f12a.png)|F12A|Zero.IconCode.LargeErase|
 |![f1be](Images/f1be.png)|F1BE|Zero.IconCode.Lasso|
 |![f1b9](Images/f1b9.png)|F1B9|Zero.IconCode.LassoSparkle|
+|![e5b1](Images/e5b1.png)|E5B1|Zero.IconCode.Last|
 |![e8be](Images/e8be.png)|E8BE|Zero.IconCode.Leaf|
 |![f1e8](Images/f1e8.png)|F1E8|Zero.IconCode.LeafTwo|
 |![f7db](Images/f7db.png)|F7DB|Zero.IconCode.LearningTools|

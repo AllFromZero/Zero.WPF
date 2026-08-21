@@ -10,11 +10,11 @@
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
-        <local:MainWindowVM/>
+        <local:MainWindowVM x:Name="mainVM"/>
     </Window.DataContext>
     <behaviors:Interaction.Triggers>
-        <behaviors:EventTrigger EventName="Closing">
-            <behaviors:InvokeCommandAction Command="{Binding ClosingCommand}"></behaviors:InvokeCommandAction>
+        <behaviors:EventTrigger EventName="Loaded">
+            <behaviors:InvokeCommandAction Command="{Binding ViewLoadedCommand}"></behaviors:InvokeCommandAction>
         </behaviors:EventTrigger>
     </behaviors:Interaction.Triggers>
     <Grid>
@@ -109,6 +109,7 @@
                 </TabItem>
             </TabControl>
         </WrapPanel>
+        <zctrl:ZeroNavigationBar VerticalAlignment="Bottom"></zctrl:ZeroNavigationBar>
     </Grid>
 </Window>
  

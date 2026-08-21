@@ -6,9 +6,9 @@ using CommunityToolkit.Mvvm.Input;
 namespace Zero.WPF.Core.MVVM
 {
     /// <summary>
-    /// 页面导航视图模型（基于 CommunityToolkit.Mvvm）
+    /// 页导航视图模型（基于 CommunityToolkit.Mvvm）
     /// </summary>
-    public partial class BrowserPageViewModel : ZeroViewModel
+    public partial class NavigationViewModel : ZeroViewModel
     {
         #region Observable Properties（自动生成属性）
 
@@ -22,19 +22,19 @@ namespace Zero.WPF.Core.MVVM
         /// 总页数
         /// </summary>
         [ObservableProperty]
-        private int _totalPageCnt;
+        private int _totalPageCnt = 1;
 
         /// <summary>
         /// 当前页
         /// </summary>
         [ObservableProperty]
-        private int _currentPage;
+        private int _currentPage = 1;
 
         /// <summary>
         /// 当前页面起始数据编号
         /// </summary>
         [ObservableProperty]
-        private int _startIndex;
+        private int _startIndex = 0;
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace Zero.WPF.Core.MVVM
         /// <summary>
         /// 总记录数（设置时自动计算总页数）
         /// </summary>
-        private int _totalCnt;
+        private int _totalDataCnt;
         /// <summary>
         /// 单页记录数量（默认100，最小值1）
         /// </summary>
@@ -51,15 +51,24 @@ namespace Zero.WPF.Core.MVVM
         /// <summary>
         /// 总记录数（设置时自动计算总页数）
         /// </summary>
-        public int TotalCnt
+        public int TotalDataCnt
         {
-            get => _totalCnt;
+            get => _totalDataCnt;
             set
             {
-                if (SetProperty(ref _totalCnt, value))
+                if (SetProperty(ref _totalDataCnt, value))
                 {
                     // 更新总页数
-                    TotalPageCnt = CalculatePageCount(value, OnePageCnt);
+                    if (_totalDataCnt <= 0)
+                    {
+                        TotalPageCnt = 1;
+                        CurrentPage = 1;
+                        TargetPage = 1;
+                    }
+                    else
+                    {
+                        TotalPageCnt = CalculatePageCount(value, OnePageCnt);
+                    }
                 }
             }
         }
@@ -76,9 +85,9 @@ namespace Zero.WPF.Core.MVVM
                 if (SetProperty(ref _onePageCount, validValue))
                 {
                     // 重新计算总页数
-                    if (_totalCnt > 0)
+                    if (_totalDataCnt > 0)
                     {
-                        TotalPageCnt = CalculatePageCount(_totalCnt, validValue);
+                        TotalPageCnt = CalculatePageCount(_totalDataCnt, validValue);
                     }
                 }
             }
@@ -144,7 +153,7 @@ namespace Zero.WPF.Core.MVVM
             TargetPage = target; // 同步 UI 输入框
 
             // 无数据时提示
-            if (TotalPageCnt == 0)
+            if (TotalDataCnt == 0)
             {
                 ShowNoDataWarning();
                 TargetPage = CurrentPage;
@@ -180,10 +189,10 @@ namespace Zero.WPF.Core.MVVM
             }
 
             // 更新当前页并查询
-            CurrentPage = target;
             try
             {
                 QueryPage();
+                CurrentPage = target;
             }
             catch (Exception ex)
             {
