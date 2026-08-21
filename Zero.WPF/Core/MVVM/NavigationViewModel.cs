@@ -16,25 +16,25 @@ namespace Zero.WPF.Core.MVVM
         /// 目标页（UI 输入绑定）
         /// </summary>
         [ObservableProperty]
-        private int _targetPage = 1;
+        public partial int TargetPage { get; set; } = 1;
 
         /// <summary>
         /// 总页数
         /// </summary>
         [ObservableProperty]
-        private int _totalPageCnt = 1;
+        public partial int TotalPageCnt { get; set; } = 1;
 
         /// <summary>
         /// 当前页
         /// </summary>
         [ObservableProperty]
-        private int _currentPage = 1;
+        public partial int CurrentPage { get; set; } = 1;
 
         /// <summary>
         /// 当前页面起始数据编号
         /// </summary>
         [ObservableProperty]
-        private int _startIndex = 0;
+        public partial int StartIndex { get; set; } = 0;
 
         #endregion
 
