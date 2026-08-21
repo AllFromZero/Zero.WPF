@@ -3,25 +3,82 @@
                     xmlns:local="clr-namespace:Zero.WPF.Controls">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Zero.WPF;component/Themes/ZeroDefault.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Themes/IconCodes.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Resources/Styles/TextBlockStyles.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type local:ZeroNavigationBar}">
         <Setter Property="FontFamily" Value="{StaticResource Zero.FontFamily}"/>
         <Setter Property="FontSize" Value="{StaticResource Zero.FontSize}"/>
-        <Setter Property="Foreground" Value="{StaticResource Zero.Static.Foreground}"/>
-        <Setter Property="Background" Value="{StaticResource Zero.Static.Background}"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="LightGray"/>
         <Setter Property="Padding" Value="{StaticResource Zero.Padding}"/>
-        <Setter Property="Margin" Value="{StaticResource Zero.Margin}"/>
+        <Setter Property="Margin" Value="0"/>
         <Setter Property="CornerRadius" Value="{StaticResource ResourceKey=Zero.CornerRadius}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Zero.Static.Border}"/>
         <Setter Property="BorderThickness" Value="{StaticResource Zero.BorderThickness}"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="TargetPage" Value="{Binding TargetPage}"/>
+        <Setter Property="TotalPageCnt" Value="{Binding TotalPageCnt}"/>
+        <Setter Property="CurrentPage" Value="{Binding CurrentPage}"/>
+        <Setter Property="StartIndex" Value="{Binding StartIndex}"/>
+        <Setter Property="TotalDataCnt" Value="{Binding TotalDataCnt}"/>
+        <Setter Property="OnePageCnt" Value="{Binding OnePageCnt}"/>
+        <Setter Property="FirstPageCommand" Value="{Binding FirstPageCommand}"/>
+        <Setter Property="PreviousPageCommand" Value="{Binding PreviousPageCommand}"/>
+        <Setter Property="GoToPageCommand" Value="{Binding GoToPageCommand}"/>
+        <Setter Property="NextPageCommand" Value="{Binding NextPageCommand}"/>
+        <Setter Property="LastPageCommand" Value="{Binding LastPageCommand}"/>
+        <Setter Property="FirstPageIcon">
+            <Setter.Value>
+                <TextBlock Text="{StaticResource Zero.IconCode.First}" Style="{StaticResource Zero.TextBlock.Icon.Style}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="PreviousPageIcon">
+            <Setter.Value>
+                <TextBlock Text="{StaticResource Zero.IconCode.ChevronLeft}" Style="{StaticResource Zero.TextBlock.Icon.Style}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GoToPageIcon">
+            <Setter.Value>
+                <TextBlock Text="{StaticResource Zero.IconCode.SendMirrored}" Style="{StaticResource Zero.TextBlock.Icon.Style}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="NextPageIcon">
+            <Setter.Value>
+                <TextBlock Text="{StaticResource Zero.IconCode.ChevronRight}" Style="{StaticResource Zero.TextBlock.Icon.Style}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LastPageIcon">
+            <Setter.Value>
+                <TextBlock Text="{StaticResource Zero.IconCode.Last}" Style="{StaticResource Zero.TextBlock.Icon.Style}"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ZeroNavigationBar}">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding Path=CornerRadius,RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="{Binding Path=CornerRadius}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                                <TextBlock Text="{TemplateBinding TotalPageLabel}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"></TextBlock>
+                                <TextBlock Text="{Binding TotalPageCnt, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <local:ZeroButton Width="{TemplateBinding ControlWidth}" Icon="{TemplateBinding FirstPageIcon}" IconMargin="0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding FirstPageContent}" Command="{TemplateBinding FirstPageCommand}" BorderBrush="{TemplateBinding ButtonBorderBrush}" BorderThickness="{TemplateBinding ButtonBorderThickness}" Background="{TemplateBinding ButtonBackground}" Foreground="{TemplateBinding ButtonForeground}"/>
+                                <local:ZeroButton Width="{TemplateBinding ControlWidth}" Icon="{TemplateBinding PreviousPageIcon}" IconMargin="0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding PreviousPageContent}"  Command="{TemplateBinding PreviousPageCommand}" BorderBrush="{TemplateBinding ButtonBorderBrush}" BorderThickness="{TemplateBinding ButtonBorderThickness}" Background="{TemplateBinding ButtonBackground}" Foreground="{TemplateBinding ButtonForeground}"/>
+                                <local:ZeroNumericBox Width="{TemplateBinding ControlWidth}" DecimalValue="{Binding TargetPage, RelativeSource={RelativeSource TemplatedParent}}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" BorderBrush="{TemplateBinding ButtonBorderBrush}" BorderThickness="{TemplateBinding ButtonBorderThickness}" Background="{TemplateBinding InputBackground}" Foreground="{TemplateBinding InputForeground}"/>
+                                <local:ZeroButton Width="{TemplateBinding ControlWidth}" Icon="{TemplateBinding GoToPageIcon}" IconMargin="0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding GoToPageContent}"  Command="{TemplateBinding GoToPageCommand}" BorderBrush="{TemplateBinding ButtonBorderBrush}" BorderThickness="{TemplateBinding ButtonBorderThickness}" Background="{TemplateBinding ButtonBackground}" Foreground="{TemplateBinding ButtonForeground}"/>
+                                <local:ZeroButton Width="{TemplateBinding ControlWidth}" Icon="{TemplateBinding NextPageIcon}" IconAlignment="Right" IconMargin="0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding NextPageContent}"  Command="{TemplateBinding NextPageCommand}" BorderBrush="{TemplateBinding ButtonBorderBrush}" BorderThickness="{TemplateBinding ButtonBorderThickness}" Background="{TemplateBinding ButtonBackground}" Foreground="{TemplateBinding ButtonForeground}"/>
+                                <local:ZeroButton Width="{TemplateBinding ControlWidth}" Icon="{TemplateBinding LastPageIcon}" IconAlignment="Right" IconMargin="0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Content="{TemplateBinding LastPageContent}"  Command="{TemplateBinding LastPageCommand}" BorderBrush="{TemplateBinding ButtonBorderBrush}" BorderThickness="{TemplateBinding ButtonBorderThickness}" Background="{TemplateBinding ButtonBackground}" Foreground="{TemplateBinding ButtonForeground}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Orientation="Horizontal"></StackPanel>
+                        </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="false">

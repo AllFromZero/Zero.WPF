@@ -522,6 +522,7 @@
     <sys:String x:Key="Zero.IconCode.FlickLeft">&#xe937;</sys:String>
     <sys:String x:Key="Zero.IconCode.FlickRight">&#xe938;</sys:String>
     <sys:String x:Key="Zero.IconCode.FlickUp">&#xe936;</sys:String>
+    <sys:String x:Key="Zero.IconCode.First">&#xe5b0;</sys:String>
     <sys:String x:Key="Zero.IconCode.Flow">&#xef90;</sys:String>
     <sys:String x:Key="Zero.IconCode.FlowConfig">&#xEF90;</sys:String>
     <sys:String x:Key="Zero.IconCode.Folder">&#xe8b7;</sys:String>
@@ -712,6 +713,7 @@
     <sys:String x:Key="Zero.IconCode.LargeErase">&#xf12a;</sys:String>
     <sys:String x:Key="Zero.IconCode.Lasso">&#xf1be;</sys:String>
     <sys:String x:Key="Zero.IconCode.LassoSparkle">&#xf1b9;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Last">&#xe5b1;</sys:String>
     <sys:String x:Key="Zero.IconCode.Leaf">&#xe8be;</sys:String>
     <sys:String x:Key="Zero.IconCode.LeafTwo">&#xf1e8;</sys:String>
     <sys:String x:Key="Zero.IconCode.LearningTools">&#xf7db;</sys:String>

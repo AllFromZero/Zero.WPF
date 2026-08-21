@@ -1,4 +1,4 @@
-# BrowserPageViewModel
+# NavigationViewModel
 
 分页浏览试图模型。
 
@@ -32,7 +32,7 @@
 
 | 函数                                                   | 说明                                                                 |
 | ------------------------------------------------------ | -------------------------------------------------------------------- |
-| protected virtual void OnGoToPage(int target)          | 导航到页面                                                           |
+| protected virtual void OnGoToPage(int target)          | 导航到页面                                                          |
 | protected virtual bool QueryPage()                     | 查询记录，需要重新方法，否则会报错。使使用时需要更新StartIndex属性。 |
 | protected virtual void OnFirstPage(object? sender)     | 第一页                                                               |
 | protected virtual void OnNextPage(object? sender)      | 下一页                                                               |

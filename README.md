@@ -33,6 +33,8 @@ WPF控件库
 
 标签控件，在WPF基础控件的基础上增加圆角等属性。
 
+### [ZeroNavigationBar](Docs/ZeroNavigationBar.md)
+
 ### [ZeroTextBox](Docs/ZeroTextBox.md)
 
 文本输入框，基于WPF控件扩展，增加圆角等属性。
@@ -154,11 +156,11 @@ int值转换为十六进制字符串，默认添加“0x”字符。
 
 WPF项目MVVM相关基础配置类型。
 
-#### BrowserPageViewModel
+#### NavigationViewModel
 
 分页浏览试图模型，继承自[ZeroViewModel](#zeroviewmodel)
 
-详见：[BrowserPageViewModel.md](/Docs/BrowserPageViewModel.md)
+详见：[NavigationViewModel.md](/Docs/NavigationViewModel.md)
 
 #### ZeroViewModel
 
@@ -180,6 +182,7 @@ wpf相关的资源集合，如字体，图标等等。
 - 图标字体空间，保存1800多个图形。
 - 可参考资源[IconCodes.xaml](#iconcodesxaml)的字符串封装。
 - 有关Icon图标和名称信息详见[ZeroIcons.md](Docs/ZeroIcons.md)。
+- 全部图标样式编码详见[ZeroIcons图标.pdf](Docs/ZeroIcons图标.pdf)
 
 ### Strings.resx
 
