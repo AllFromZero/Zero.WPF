@@ -98,7 +98,7 @@
             <TextBlock>绑定数据</TextBlock>
             <TextBlock Text="{Binding QueryStartTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
             <TextBlock Text="{Binding QueryEndTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
-            <zctrl:ZeroDateRangePicker x:Name="timeRange" StartTime="{Binding QueryStartTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" EndTime="{Binding QueryEndTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="300"/>
+            <zctrl:ZeroDateRangePicker x:Name="timeRange" StartTime="{Binding QueryStartTime}" EndTime="{Binding QueryEndTime}" Width="300"/>
         </WrapPanel>
     </DockPanel>
 </Window>

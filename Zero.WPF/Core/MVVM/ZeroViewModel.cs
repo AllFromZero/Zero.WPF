@@ -127,7 +127,7 @@ namespace Zero.WPF.Core.MVVM
                     value = value.Value.Date;
                 }
                 
-                SetProperty(ref _queryEndTime, value);
+                SetProperty(ref _queryStartTime, value);
             }
         }
         /// <summary>
