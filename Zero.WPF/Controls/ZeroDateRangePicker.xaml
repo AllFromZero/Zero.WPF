@@ -19,6 +19,8 @@
         <Setter Property="BorderThickness" Value="{StaticResource Zero.Input.BorderThickness}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="StartTime" Value="{Binding QueryStartTime}"/>
+        <Setter Property="EndTime" Value="{Binding QueryEndTime}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
