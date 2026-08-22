@@ -19,6 +19,14 @@ namespace Zero.WPF.Core.MVVM
         /// 释放资源标识
         /// </summary>
         private bool _isDisposed = false;
+        /// <summary>
+        /// 开始时间
+        /// </summary>
+        public DateTime? _queryStartTime = DateTime.Today.AddDays(-6);
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        public DateTime? _queryEndTime = DateTime.Today.AddDays(1).AddMilliseconds(-1);
 
         #endregion Private Fields
 
@@ -99,16 +107,49 @@ namespace Zero.WPF.Core.MVVM
         /// </summary>
         [ObservableProperty]
         public partial string? QueryInfo { get; set; }
+        
+
+
         /// <summary>
         /// 查询开始时间
         /// </summary>
-        [ObservableProperty]
-        public partial DateTime? QueryStartTime { get; set; } = DateTime.Today.AddDays(-6);
+        public DateTime? QueryStartTime 
+        { 
+            get=> _queryStartTime;
+            set
+            {
+                if (value.HasValue && QueryEndTime.HasValue)
+                {
+                    if (value.Value > QueryEndTime.Value)
+                    {
+                        value = QueryEndTime.Value;
+                    }
+                    value = value.Value.Date;
+                }
+                
+                SetProperty(ref _queryEndTime, value);
+            }
+        }
         /// <summary>
         /// 查询结束时间
         /// </summary>
-        [ObservableProperty]
-        public partial DateTime? QueryEndTime { get; set; } = DateTime.Today.AddDays(1).AddMicroseconds(-1);
+        public DateTime? QueryEndTime 
+        { 
+            get => _queryEndTime;
+            set
+            {
+                if (value.HasValue && QueryStartTime.HasValue)
+                {
+                    if (value.Value < QueryStartTime.Value)
+                    {
+                        value = QueryStartTime.Value;
+                    }
+                    value = value.Value.Date.AddDays(1).AddMilliseconds(-1);
+                }
+
+                SetProperty(ref _queryEndTime, value);
+            }
+        }
 
         #endregion Query Condition
 

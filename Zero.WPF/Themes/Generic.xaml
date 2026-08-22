@@ -17,6 +17,7 @@
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroTextBox.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroPasswordBox.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroDatePicker.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroDateRangePicker.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroTabControl.xaml"/>
         <!-- Styles -->
         <ResourceDictionary Source="/Zero.WPF;component/Resources/Styles/TextBlockStyles.xaml"/>

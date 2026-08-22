@@ -17,7 +17,8 @@
             <behaviors:InvokeCommandAction Command="{Binding ViewLoadedCommand}"></behaviors:InvokeCommandAction>
         </behaviors:EventTrigger>
     </behaviors:Interaction.Triggers>
-    <Grid>
+    <DockPanel LastChildFill="True">
+        <zctrl:ZeroNavigationBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom"></zctrl:ZeroNavigationBar>
         <WrapPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto">
             <zctrl:ZeroButton Content ="ZeroButton" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <zctrl:ZeroButton.Icon>
@@ -48,7 +49,7 @@
                 <ComboBoxItem>3</ComboBoxItem>
             </zctrl:ZeroComboBox>
             <zctrl:ZeroDatePicker/>
-            <StackPanel>
+            <WrapPanel Orientation="Vertical">
                 <zctrl:ZeroRadioButton x:Name="rbtn1" Content="选项1" IsChecked="True"/>
                 <zctrl:ZeroRadioButton x:Name="rbtn2" Content="选项2"/>
                 <zctrl:ZeroRadioButton x:Name="rbtn3" Content="选项3" >
@@ -84,32 +85,21 @@
                     </TextBlock.Text>
                 </TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource Zero.TextBlock.Rotating.Style}"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource Zero.TextBlock.Rotating.Style}"/>
-            </StackPanel>
+            </WrapPanel>
             <StackPanel>
                 <TextBlock x:Name="txt_light1" Text="{StaticResource Zero.IconCode.Lightbulb}" Visibility="{Binding IsOn,ElementName=wbtn_1,Converter={StaticResource Zero.Converter.BooleanToVisibility},Mode=TwoWay,ConverterParameter=Invert}" FontSize="25" Foreground="Red" FontFamily="{StaticResource Zero.FontFamily.Icon}"/>
                 <zctrl:ZeroSwitchButton x:Name="wbtn_1" IsOn="{Binding IsOn,ElementName=wbtn_2,Converter={StaticResource Zero.Converter.BooleanInverter}}"/>
                 <TextBlock x:Name="txt_light2" Text="{StaticResource Zero.IconCode.Lightbulb}" Visibility="{Binding IsOn,ElementName=wbtn_2,Converter={StaticResource Zero.Converter.BooleanToVisibility}}" FontSize="25" Foreground="Green" FontFamily="{StaticResource Zero.FontFamily.Icon}"/>
                 <zctrl:ZeroSwitchButton x:Name="wbtn_2"/>
             </StackPanel>
-            <zctrl:ZeroTabControl MinHeight="60">
-                <TabItem>
-                    <TextBlock>1</TextBlock>
-                </TabItem>
-                <TabItem>
-                    <TextBlock>1</TextBlock>
-                </TabItem>
-            </zctrl:ZeroTabControl>
-            <TabControl>
-                <TabItem>
-                    <TextBlock>1</TextBlock>
-                </TabItem>
-                <TabItem>
-                    <TextBlock>1</TextBlock>
-                </TabItem>
-            </TabControl>
+            <TextBlock>属性</TextBlock>
+            <TextBlock Text="{Binding StartTime,ElementName=timeRange,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
+            <TextBlock Text="{Binding EndTime,ElementName=timeRange,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
+            <TextBlock>绑定数据</TextBlock>
+            <TextBlock Text="{Binding QueryStartTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
+            <TextBlock Text="{Binding QueryEndTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
+            <zctrl:ZeroDateRangePicker x:Name="timeRange" StartTime="{Binding QueryStartTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" EndTime="{Binding QueryEndTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="300"/>
         </WrapPanel>
-        <zctrl:ZeroNavigationBar VerticalAlignment="Bottom"></zctrl:ZeroNavigationBar>
-    </Grid>
+    </DockPanel>
 </Window>
  
