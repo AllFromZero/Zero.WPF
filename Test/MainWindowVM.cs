@@ -33,6 +33,5 @@ namespace Test
             Debug.WriteLine("导航到页面：" + TargetPage);
             return true; 
         }
-
     }
 }
