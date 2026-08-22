@@ -28,55 +28,89 @@ namespace Zero.WPF.Core.MVVM
         /// 标题
         /// </summary>
         [ObservableProperty]
-        private string? _viewTitle;
+        public partial string? ViewTitle { get; set; }
 
         /// <summary>
         /// 模块是否使能标识
         /// </summary>
         [ObservableProperty]
-        private bool _isModelEnabled = true;
+        public partial bool IsModelEnabled { get; set; } = true;
 
         /// <summary>
         /// 是否打开标识
         /// </summary>
         [ObservableProperty]
-        private bool _isOn;
+        public partial bool IsOn { get; set; }
 
         /// <summary>
         /// 是否编辑标识
         /// </summary>
         [ObservableProperty]
-        private bool _isEdit;
+        public partial bool IsEdit { get; set; }
 
         /// <summary>
         /// 是否已加载
         /// </summary>
         [ObservableProperty]
-        private bool _isViewLoaded;
+        public partial bool IsViewLoaded { get; set; }
 
         /// <summary>
         /// 是否正在加载数据
         /// </summary>
         [ObservableProperty]
-        private bool _isDataLoading;
+        public partial bool IsDataLoading { get; set; }
 
         /// <summary>
         /// 提示
         /// </summary>
         [ObservableProperty]
-        private string? _prompt = string.Empty;
+        public partial string? Prompt { get; set; } = string.Empty;
 
         /// <summary>
         /// 视图可视属性
         /// </summary>
         [ObservableProperty]
-        private Visibility _visibility = Visibility.Visible;
+        public partial Visibility Visibility { get; set; } = Visibility.Visible;
 
         /// <summary>
         /// 是否繁忙（用于异步操作状态）
         /// </summary>
         [ObservableProperty]
-        private bool _isBusy;
+        public partial bool IsBusy { get; set; }
+
+        #region Query Condition
+        /// <summary>
+        /// 查询条件
+        /// </summary>
+        [ObservableProperty]
+        public partial bool? QueryEnabled { get; set; }
+        /// <summary>
+        /// 查询用户ID
+        /// </summary>
+        [ObservableProperty]
+        public partial int? QueryUserId { get; set; }
+        /// <summary>
+        /// 查询用户名
+        /// </summary>
+        [ObservableProperty]
+        public partial string? QueryUserName { get; set; }
+        /// <summary>
+        /// 查询信息
+        /// </summary>
+        [ObservableProperty]
+        public partial string? QueryInfo { get; set; }
+        /// <summary>
+        /// 查询开始时间
+        /// </summary>
+        [ObservableProperty]
+        public partial DateTime? QueryStartTime { get; set; } = DateTime.Today.AddDays(-6);
+        /// <summary>
+        /// 查询结束时间
+        /// </summary>
+        [ObservableProperty]
+        public partial DateTime? QueryEndTime { get; set; } = DateTime.Today.AddDays(1).AddMicroseconds(-1);
+
+        #endregion Query Condition
 
         #endregion Observable Properties
 
@@ -676,7 +710,7 @@ namespace Zero.WPF.Core.MVVM
         /// 导航参数
         /// </summary>
         [ObservableProperty]
-        private TParameter? _parameter;
+        public partial TParameter? Parameter { get; set; }
 
         /// <summary>
         /// 初始化方法，在参数设置后调用
