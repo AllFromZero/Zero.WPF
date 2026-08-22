@@ -29,6 +29,10 @@ WPF控件库
 
 日期选择控件，在WPF基础控件的基础上增加圆角等属性。
 
+### [ZeroDateRangePicker](Docs/ZeroDateRangePicker.md)
+
+日期范围选择控件，组合两个ZeroDatePicker控件，做范围选择使用。
+
 ### [ZeroLabel](Docs/ZeroLabel.md)
 
 标签控件，在WPF基础控件的基础上增加圆角等属性。
