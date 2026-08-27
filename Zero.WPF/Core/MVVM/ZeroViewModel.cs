@@ -42,7 +42,7 @@ namespace Zero.WPF.Core.MVVM
         /// 模块是否使能标识
         /// </summary>
         [ObservableProperty]
-        public partial bool IsModelEnabled { get; set; } = true;
+        public partial bool IsViewEnabled { get; set; } = true;
 
         /// <summary>
         /// 是否打开标识
@@ -65,6 +65,7 @@ namespace Zero.WPF.Core.MVVM
         /// <summary>
         /// 是否正在加载数据
         /// </summary>
+        /// <remarks>用于异步操作状态</remarks>
         [ObservableProperty]
         public partial bool IsDataLoading { get; set; }
 
@@ -79,12 +80,6 @@ namespace Zero.WPF.Core.MVVM
         /// </summary>
         [ObservableProperty]
         public partial Visibility Visibility { get; set; } = Visibility.Visible;
-
-        /// <summary>
-        /// 是否繁忙（用于异步操作状态）
-        /// </summary>
-        [ObservableProperty]
-        public partial bool IsBusy { get; set; }
 
         #region Query Condition
         /// <summary>
@@ -108,11 +103,10 @@ namespace Zero.WPF.Core.MVVM
         [ObservableProperty]
         public partial string? QueryInfo { get; set; }
         
-
-
         /// <summary>
         /// 查询开始时间
         /// </summary>
+        /// <remarks>固定设置为当天00:00:00</remarks>
         public DateTime? QueryStartTime 
         { 
             get=> _queryStartTime;
@@ -133,6 +127,7 @@ namespace Zero.WPF.Core.MVVM
         /// <summary>
         /// 查询结束时间
         /// </summary>
+        /// <remarks>固定设置为当天23:59:59.999</remarks>
         public DateTime? QueryEndTime 
         { 
             get => _queryEndTime;
@@ -432,6 +427,73 @@ namespace Zero.WPF.Core.MVVM
             OnEnable(sender);
         }
 
+        #region Move and insert
+
+        /// <summary>
+        /// 置顶命令
+        /// </summary>
+        [RelayCommand]
+        private void MoveToTop(object? sender)
+        {
+            OnMoveToTop(sender);
+        }
+
+        /// <summary>
+        /// 上移命令
+        /// </summary>
+        [RelayCommand]
+        private void MoveUp(object? sender)
+        {
+            OnMoveUp(sender);
+        }
+
+        /// <summary>
+        /// 下移命令
+        /// </summary>
+        [RelayCommand]
+        private void MoveDown(object? sender)
+        {
+            OnMoveDown(sender);
+        }
+
+        /// <summary>
+        /// 置底命令
+        /// </summary>
+        [RelayCommand]
+        private void MoveToBottom(object? sender)
+        {
+            OnMoveToBottom(sender);
+        }
+
+        /// <summary>
+        /// 插入命令
+        /// </summary>
+        [RelayCommand]
+        private void Insert(object? sender)
+        {
+            OnInsert(sender);
+        }
+
+        /// <summary>
+        /// 插入到...之前命令
+        /// </summary>
+        [RelayCommand]
+        private void InsertBefore(object? sender)
+        {
+            OnInsertBefore(sender);
+        }
+
+        /// <summary>
+        /// 插入到...之后命令
+        /// </summary>
+        [RelayCommand]
+        private void InsertAfter(object? sender)
+        {
+            OnInsertAfter(sender);
+        }
+
+        #endregion Move and insert
+
         #endregion Commands
 
         #region Async Commands (异步命令)
@@ -442,9 +504,8 @@ namespace Zero.WPF.Core.MVVM
         [RelayCommand]
         private async Task LoadDataAsync(object? sender)
         {
-            if (IsBusy) return;
+            if (IsDataLoading) return;
 
-            IsBusy = true;
             IsDataLoading = true;
 
             try
@@ -453,7 +514,6 @@ namespace Zero.WPF.Core.MVVM
             }
             finally
             {
-                IsBusy = false;
                 IsDataLoading = false;
             }
         }
@@ -696,6 +756,59 @@ namespace Zero.WPF.Core.MVVM
         protected virtual void OnLogin(object? sender)
         {
         }
+
+        #region Move and insert
+
+        /// <summary>
+        /// 置顶
+        /// </summary>
+        protected virtual void OnMoveToTop(object? sender)
+        {
+        }
+
+        /// <summary>
+        /// 上移
+        /// </summary>
+        protected virtual void OnMoveUp(object? sender)
+        {
+        }
+
+        /// <summary>
+        /// 下移
+        /// </summary>
+        protected virtual void OnMoveDown(object? sender)
+        {
+        }
+
+        /// <summary>
+        /// 置底
+        /// </summary>
+        protected virtual void OnMoveToBottom(object? sender)
+        {
+        }
+
+        /// <summary>
+        /// 插入命令
+        /// </summary>
+        protected virtual void OnInsert(object? sender)
+        {
+        }
+
+        /// <summary>
+        /// 插入到...之前命令
+        /// </summary>
+        protected virtual void OnInsertBefore(object? sender)
+        {
+        }
+
+        /// <summary>
+        /// 插入到...之后命令
+        /// </summary>
+        protected virtual void OnInsertAfter(object? sender)
+        {
+        }
+
+        #endregion Move and insert
 
         /// <summary>
         /// 异步加载数据（子类可重写）

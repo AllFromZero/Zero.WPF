@@ -34,7 +34,14 @@
 | DialogCloseCommand    | RelayCommand? | 对话框关闭命令                                        |
 | LoadDataCommand       | RelayCommand? | 加载数据                                              |
 | LoginCommand          | RelayCommand? | 登录命令                                              |
-| IsModelEnabled        | bool          | 模块是否使能                                          |
+| MoveToTopCommand      | RelayCommand? | 置顶命令                                              |
+| MoveUpCommand         | RelayCommand? | 上移命令                                              |
+| MoveDownCommand       | RelayCommand? | 下移命令                                              |
+| MoveToBottomCommand   | RelayCommand? | 置底命令                                              |
+| InsertCommand         | RelayCommand? | 插入命令                                              |
+| InsertBeforeCommand   | RelayCommand? | 插入到...之前命令                                     |
+| InsertAfterCommand    | RelayCommand? | 插入到...之后命令                                     |
+| IsViewEnabled         | bool          | 试图是否使能                                          |
 | IsOn                  | bool          | 是否启动                                              |
 | IsViewLoaded          | bool          | 是否已加载                                            |
 | IsDataLoading         | bool          | 数据加载中                                            |
@@ -42,7 +49,6 @@
 | ViewTitle             | string?       | 标题                                                  |
 | Prompt                | string?       | 提示                                                  |
 | Visibility            | Visibility    | 可见属性                                              |
-| IsBusy                | bool          | 是否繁忙（用于异步操作状态）                          |
 | QueryEnabled          | bool?         | 查询条件是否有效                                      |
 | QueryUserId           | int?          | 查询用户ID                                            |
 | QueryUserName         | string?       | 查询用户名                                            |
@@ -80,6 +86,13 @@
 | private void Closed(object? sender)              | 已关闭                                 |
 | private void DialogClose(object? sender)         | 对话框关闭                             |
 | private void Login(object? sender)               | 登录                                   |
+| private void MoveToTop(object? sender)           | 置顶                                   |
+| private void MoveUp(object? sender)              | 上移                                   |
+| private void MoveDown(object? sender)            | 下移                                   |
+| private void MoveToBottom(object? sender)        | 置底                                   |
+| private void Insert(object? sender)              | 插入                                   |
+| private void InsertBefore(object? sender)        | 插入到...之前命令                      |
+| private void InsertAfter(object? sender)         | 插入到...之后命令                      |
 | private async Task LoadDataAsync(object? sender) | 异步方法，加载指令                     |
 
 使用时，Xaml界面绑定对应的Command，C#页面直接重写对应的方法即可，基类模型默认关联对应的函数方法。
@@ -113,6 +126,13 @@
 | protected virtual void OnClosed(object? sender)         | 已关闭                         |
 | protected virtual void OnDialogClose(object? sender)    | 对话框关闭                     |
 | protected virtual void OnLogin(object? sender)          | 登录                           |
+| protected virtual void OnMoveToTop(object? sender)      | 置顶                           |
+| protected virtual void OnMoveUp(object? sender)         | 上移                           |
+| protected virtual void OnMoveDown(object? sender)       | 下移                           |
+| protected virtual void OnMoveToBottom(object? sender)   | 置底                           |
+| protected virtual void OnInsert(object? sender)         | 插入                           |
+| protected virtual void OnInsertBefore(object? sender)   | 插入到...之前命令              |
+| protected virtual void OnInsertAfter(object? sender)    | 插入到...之后命令              |
 | protected virtual Task OnLoadDataAsync(object? sender)  | 数据加载                       |
 
 ## 方法
