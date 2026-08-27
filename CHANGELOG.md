@@ -1,5 +1,11 @@
 # 更新记录
 
+## v1.0.9
+
+### Zero.IconCode
+
+- 增加置底图标资源：Zero.IconCode.Bottom
+
 ## v1.0.8
 
 更新日期：2026.08.27

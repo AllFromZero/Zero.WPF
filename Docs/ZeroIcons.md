@@ -152,6 +152,7 @@
 |![e8dd](Images/e8dd.png)|E8DD|Zero.IconCode.Bold|
 |![e8a4](Images/e8a4.png)|E8A4|Zero.IconCode.Bookmarks|
 |![ea41](Images/ea41.png)|EA41|Zero.IconCode.BookmarksMirrored|
+|![e118/e896](Images/e896.png)|EA41|Zero.IconCode.Bottom|
 |![e706](Images/e706.png)|E706|Zero.IconCode.Brightness|
 |![ea99](Images/ea99.png)|EA99|Zero.IconCode.Broom|
 |![e7c5](Images/e7c5.png)|E7C5|Zero.IconCode.BrowsePhotos|
