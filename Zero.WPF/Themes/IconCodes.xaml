@@ -121,6 +121,7 @@
     <sys:String x:Key="Zero.IconCode.Bold">&#xe8dd;</sys:String>
     <sys:String x:Key="Zero.IconCode.Bookmarks">&#xe8a4;</sys:String>
     <sys:String x:Key="Zero.IconCode.BookmarksMirrored">&#xea41;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Bottom">&#xe118;</sys:String>
     <sys:String x:Key="Zero.IconCode.Brightness">&#xe706;</sys:String>
     <sys:String x:Key="Zero.IconCode.Broom">&#xea99;</sys:String>
     <sys:String x:Key="Zero.IconCode.BrowsePhotos">&#xe7c5;</sys:String>
