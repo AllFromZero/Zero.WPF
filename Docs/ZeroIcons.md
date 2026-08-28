@@ -4,32 +4,45 @@
 
 ## 基本使用说明
 
-引用字体库：
+### 引用字体库
 
-```Csharp
-<FontFamily x:Key="Zero.IconFont">pack://application:,,,/Zero.WPF;component/Resources/Fonts/#ZeroIcons</FontFamily>
+```xaml
+<FontFamily x:Key="Zero.FontFamily.Icon">pack://application:,,,/Zero.WPF;component/Resources/Fonts/#ZeroIcons</FontFamily>
+```
+
+本类库默认将图标字体封装成是Zero.FontFamily.Icon静态资源，可以通过合并类库的资源字典Generic.xaml进行全局引用。
+
+```xaml
+<ResourceDictionary Source="pack://application:,,,/Zero.WPF;component/Themes/Generic.xaml"/>
 ```
 
 注意：引用字体时，如果字体的名称包含‘.’会造成引用失效，需要避免中间间隔。
 
+### 使用预定义的图标代号资源
+
 引用图标：
 
 ```Xml
-    <!-- 合并资源，引入字体代号 -->
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Zero.WPF;component/Themes/ZeroBase.xaml"/>
-        <ResourceDictionary Source="/Zero.WPF;component/Themes/IconCodes.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
-
     <!-- 字体设置为图标字体，然后使用图标代码引用具体的图标 -->
-    <TextBlock x:Key="IsOffIcon" FontFamily="{StaticResource Zero.IconFont}" Text="{StaticResource FontIconCode.ToggleLeft}" x:Shared="False"></TextBlock>
+    <TextBlock x:Key="IsOffIcon" FontFamily="{StaticResource Zero.IconFont}" Text="{StaticResource Zero.IconCode.ToggleLeft}" x:Shared="False"></TextBlock>
 ```
 
 外部程序调用时，可添加对Genric.Xaml资源的引用，即可应用相关资源。
 
-## 图标图形样式
+### 直接使用图标代号
 
-图标样式详见：[ZeroIcons图标.pdf](ZeroIcons图标.pdf)
+首先，通过[ZeroIcons图标](ZeroIcons图标.pdf)，找到要引用的图标
+![e094](Images/image_e094.png)
+e094就是图标的代码编号。
+然后通过设置字体和文本获取图标。
+
+```xaml
+<TextBlock FontFamily="{StaticResource Zero.FontFamily.Icon}">&#xe094;</TextBlock>
+```
+
+"&#xe094;"中的“&#x”和“;”是固定格式要求，中间是字体的代码点，替换成自己想用的图标。
+
+## 预定义图标图形样式资源名称说明
 
 |图标|Unicode代码|资源名称|
 |:--:|:--:|:--:|
