@@ -207,6 +207,11 @@ TextBlock的样式集，详[TextBlockStyles.md](/Docs/Styles/TextBlockStyles.md)
 ### Generic.xaml
 
 资源入口文件。
+在App.xaml中引用即可使用类库资源字典预定义的所有资源。
+
+```CSharp
+<ResourceDictionary Source="pack://application:,,,/Zero.WPF;component/Themes/Generic.xaml"/>
+```
 
 ### IconCodes.xaml
 
