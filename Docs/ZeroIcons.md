@@ -204,6 +204,7 @@ e094就是图标的代码编号。
 |![e8f5](Images/e8f5.png)|E8F5|Zero.IconCode.CalendarReply|
 |![ea89](Images/ea89.png)|EA89|Zero.IconCode.CalendarSolid|
 |![e8c0](Images/e8c0.png)|E8C0|Zero.IconCode.CalendarWeek|
+|![e795](Images/e795.png)|E795|Zero.IconCode.Calibrate|
 |![F4B4](Images/f4b4.png)|F4B4|Zero.IconCode.Calibration|
 |![e80b](Images/e80b.png)|E80B|Zero.IconCode.CallControl|
 |![e7f2](Images/e7f2.png)|E7F2|Zero.IconCode.CallForwarding|
@@ -487,7 +488,6 @@ e094就是图标的代码编号。
 |![eb7e](Images/eb7e.png)|EB7E|Zero.IconCode.EditMirrored|
 |![e7be](Images/e7be.png)|E7BE|Zero.IconCode.Education|
 |![f7bb](Images/f7bb.png)|F7BB|Zero.IconCode.EducationIcon|
-|![e794](Images/e794.png)|E794|Zero.IconCode.Effects|
 |![f847](Images/f847.png)|F847|Zero.IconCode.Eject|
 |![e731](Images/e731.png)|E731|Zero.IconCode.EMI|
 |![e899](Images/e899.png)|E899|Zero.IconCode.Emoji|
@@ -1213,6 +1213,7 @@ e094就是图标的代码编号。
 |![e944](Images/e944.png)|E944|Zero.IconCode.ReturnToWindow|
 |![f78d](Images/f78d.png)|F78D|Zero.IconCode.RevealPasswordMedium|
 |![e845](Images/e845.png)|E845|Zero.IconCode.RevToggleKey|
+|![e794](Images/e794.png)|E794|Zero.IconCode.Review|
 |![eb9e](Images/eb9e.png)|EB9E|Zero.IconCode.Rewind|
 |![ebe7](Images/ebe7.png)|EBE7|Zero.IconCode.RightArrowKeyTime0|
 |![e846](Images/e846.png)|E846|Zero.IconCode.RightArrowKeyTime1|
