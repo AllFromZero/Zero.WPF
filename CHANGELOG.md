@@ -1,16 +1,11 @@
 # 更新记录
 
-## v1.0.10
-
-### Zero.IconCode
-
-- 添加校正、审核图标
-
 ## v1.0.9
 
 ### Zero.IconCode
 
 - 增加置底图标资源：Zero.IconCode.Bottom
+- 添加校正、审核图标
 
 ## v1.0.8
 
