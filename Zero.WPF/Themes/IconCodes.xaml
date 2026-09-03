@@ -160,6 +160,7 @@
     <sys:String x:Key="Zero.IconCode.CalendarReply">&#xe8f5;</sys:String>
     <sys:String x:Key="Zero.IconCode.CalendarSolid">&#xea89;</sys:String>
     <sys:String x:Key="Zero.IconCode.CalendarWeek">&#xe8c0;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Calibrate">&#xE795;</sys:String>
     <sys:String x:Key="Zero.IconCode.Calibration">&#xF4B4;</sys:String>
     <sys:String x:Key="Zero.IconCode.CallControl">&#xe80b;</sys:String>
     <sys:String x:Key="Zero.IconCode.CallForwarding">&#xe7f2;</sys:String>
@@ -1169,6 +1170,7 @@
     <sys:String x:Key="Zero.IconCode.ReturnToWindow">&#xe944;</sys:String>
     <sys:String x:Key="Zero.IconCode.RevealPasswordMedium">&#xf78d;</sys:String>
     <sys:String x:Key="Zero.IconCode.RevToggleKey">&#xe845;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Review">&#xe794;</sys:String>
     <sys:String x:Key="Zero.IconCode.Rewind">&#xeb9e;</sys:String>
     <sys:String x:Key="Zero.IconCode.RightArrowKeyTime0">&#xebe7;</sys:String>
     <sys:String x:Key="Zero.IconCode.RightArrowKeyTime1">&#xe846;</sys:String>
