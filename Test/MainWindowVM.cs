@@ -6,7 +6,7 @@ using Zero.WPF.Core.MVVM;
 
 namespace Test
 {
-    public partial class MainWindowVM : NavigationViewModel
+    public partial class MainWindowVM : ZeroNavigationViewModel
     {
 
         protected override void OnViewLoaded(object? sender)

@@ -1,4 +1,4 @@
-# NavigationViewModel
+# ZeroNavigationViewModel
 
 分页浏览试图模型。
 

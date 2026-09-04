@@ -8,7 +8,7 @@ namespace Zero.WPF.Core.MVVM
     /// <summary>
     /// 页导航视图模型（基于 CommunityToolkit.Mvvm）
     /// </summary>
-    public partial class NavigationViewModel : ZeroViewModel
+    public partial class ZeroNavigationViewModel : ZeroViewModel
     {
         #region Observable Properties（自动生成属性）
 

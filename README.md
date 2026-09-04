@@ -160,11 +160,11 @@ int值转换为十六进制字符串，默认添加“0x”字符。
 
 WPF项目MVVM相关基础配置类型。
 
-#### NavigationViewModel
+#### ZeroNavigationViewModel
 
 分页浏览试图模型，继承自[ZeroViewModel](#zeroviewmodel)
 
-详见：[NavigationViewModel.md](/Docs/NavigationViewModel.md)
+详见：[ZeroNavigationViewModel.md](/Docs/ZeroNavigationViewModel.md)
 
 #### ZeroViewModel
 

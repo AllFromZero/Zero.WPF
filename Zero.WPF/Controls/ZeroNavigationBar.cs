@@ -310,20 +310,20 @@ namespace Zero.WPF.Controls
         #region Content
 
         /// <summary>
-        /// 总页数内容属性委托
+        /// 总数数据标签委托
         /// </summary>
-        public static readonly DependencyProperty TotalPageLabelProperty =
-            DependencyProperty.Register("TotalPageLabel", typeof(string), typeof(ZeroNavigationBar), new FrameworkPropertyMetadata("总页数：", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+        public static readonly DependencyProperty TotalDataLabelProperty =
+            DependencyProperty.Register("TotalDataLabel", typeof(string), typeof(ZeroNavigationBar), new FrameworkPropertyMetadata("总数:", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         /// <summary>
-        /// 总页数内容属
+        /// 总数据标签
         /// </summary>
         [Bindable(true)]
         [Category("Page")]
-        public string TotalPageLabel
+        public string TotalDataLabel
         {
-            get { return (string)GetValue(TotalPageLabelProperty); }
-            set { SetValue(TotalPageLabelProperty, value); }
+            get { return (string)GetValue(TotalDataLabelProperty); }
+            set { SetValue(TotalDataLabelProperty, value); }
         }
 
         /// <summary>
