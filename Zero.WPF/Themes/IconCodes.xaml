@@ -282,6 +282,7 @@
     <sys:String x:Key="Zero.IconCode.ClosePaneMirrored">&#xea49;</sys:String>
     <sys:String x:Key="Zero.IconCode.Cloud">&#xe753;</sys:String>
     <sys:String x:Key="Zero.IconCode.CloudDownload">&#xebd3;</sys:String>
+    <sys:String x:Key="Zero.IconCode.CloudDownloadLine">&#xe797;</sys:String>
     <sys:String x:Key="Zero.IconCode.CloudNotSynced">&#xec9c;</sys:String>
     <sys:String x:Key="Zero.IconCode.CloudPrinter">&#xeda6;</sys:String>
     <sys:String x:Key="Zero.IconCode.CloudSearch">&#xede4;</sys:String>
@@ -1484,6 +1485,7 @@
     <sys:String x:Key="Zero.IconCode.UpdateStatusDot">&#xf83f;</sys:String>
     <sys:String x:Key="Zero.IconCode.UpdateStatusDot2">&#xec83;</sys:String>
     <sys:String x:Key="Zero.IconCode.Upload">&#xe898;</sys:String>
+    <sys:String x:Key="Zero.IconCode.CloudUpload">&#xe796;</sys:String>
     <sys:String x:Key="Zero.IconCode.UpShiftKey">&#xe84b;</sys:String>
     <sys:String x:Key="Zero.IconCode.USB">&#xe88e;</sys:String>
     <sys:String x:Key="Zero.IconCode.USBSafeConnect">&#xecf3;</sys:String>

@@ -326,6 +326,7 @@ e094就是图标的代码编号。
 |![ea49](Images/ea49.png)|EA49|Zero.IconCode.ClosePaneMirrored|
 |![e753](Images/e753.png)|E753|Zero.IconCode.Cloud|
 |![ebd3](Images/ebd3.png)|EBD3|Zero.IconCode.CloudDownload|
+|![e797](Images/e797.png)|E797|Zero.IconCode.CloudDownloadLine|
 |![ec9c](Images/ec9c.png)|EC9C|Zero.IconCode.CloudNotSynced|
 |![eda6](Images/eda6.png)|EDA6|Zero.IconCode.CloudPrinter|
 |![ede4](Images/ede4.png)|EDE4|Zero.IconCode.CloudSearch|
@@ -1527,6 +1528,7 @@ e094就是图标的代码编号。
 |![f83f](Images/f83f.png)|F83F|Zero.IconCode.UpdateStatusDot|
 |![ec83](Images/ec83.png)|EC83|Zero.IconCode.UpdateStatusDot2|
 |![e898](Images/e898.png)|E898|Zero.IconCode.Upload|
+|![e796](Images/e796.png)|E796|Zero.IconCode.CloudUpload|
 |![e84b](Images/e84b.png)|E84B|Zero.IconCode.UpShiftKey|
 |![e88e](Images/e88e.png)|E88E|Zero.IconCode.USB|
 |![ecf3](Images/ecf3.png)|ECF3|Zero.IconCode.USBSafeConnect|
