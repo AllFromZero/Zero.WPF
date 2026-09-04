@@ -357,6 +357,7 @@
     <sys:String x:Key="Zero.IconCode.DetachablePC">&#xf103;</sys:String>
     <sys:String x:Key="Zero.IconCode.DetectionParameters">&#xF4AC;</sys:String>
     <sys:String x:Key="Zero.IconCode.DetectionRecord">&#xE78D;</sys:String>
+    <sys:String x:Key="Zero.IconCode.DetectedRecord">&#xF4B0;</sys:String>
     <sys:String x:Key="Zero.IconCode.DeveloperTools">&#xec7a;</sys:String>
     <sys:String x:Key="Zero.IconCode.DeviceDiscovery">&#xebde;</sys:String>
     <sys:String x:Key="Zero.IconCode.DeviceLaptopNoPic">&#xe7f8;</sys:String>
