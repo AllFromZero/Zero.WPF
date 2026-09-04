@@ -320,7 +320,7 @@ e094就是图标的代码编号。
 |![f0e3](Images/f0e3.png)|F0E3|Zero.IconCode.ClipboardList|
 |![f0e4](Images/f0e4.png)|F0E4|Zero.IconCode.ClipboardListMirrored|
 |![f406](Images/f406.png)|F406|Zero.IconCode.ClippingTool|
-|![e917](Images/e917.png)|E917|Zero.IconCode.Clock|
+|![e917](Images/e917.png)|E121|Zero.IconCode.Clock|
 |![f15f](Images/f15f.png)|F15F|Zero.IconCode.ClosedCaptionsInternational|
 |![e89f](Images/e89f.png)|E89F|Zero.IconCode.ClosePane|
 |![ea49](Images/ea49.png)|EA49|Zero.IconCode.ClosePaneMirrored|
@@ -400,6 +400,7 @@ e094就是图标的代码编号。
 |![eac7](Images/eac7.png)|EAC7|Zero.IconCode.DesktopLeafTwo|
 |![f103](Images/f103.png)|F103|Zero.IconCode.DetachablePC|
 |![F4AC](Images/f4ac.png)|F4AC|Zero.IconCode.DetectionParameters|
+|![f4b0](Images/f4b0.png)|F4B0|Zero.IconCode.DetectedRecord|
 |![E78D](Images/e78d.png)|E78D|Zero.IconCode.DetectionRecord|
 |![ec7a](Images/ec7a.png)|EC7A|Zero.IconCode.DeveloperTools|
 |![ebde](Images/ebde.png)|EBDE|Zero.IconCode.DeviceDiscovery|
