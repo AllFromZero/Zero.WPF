@@ -91,6 +91,7 @@
                 <zctrl:ZeroSwitchButton x:Name="wbtn_1" IsOn="{Binding IsOn,ElementName=wbtn_2,Converter={StaticResource Zero.Converter.BooleanInverter}}"/>
                 <TextBlock x:Name="txt_light2" Text="{StaticResource Zero.IconCode.Lightbulb}" Visibility="{Binding IsOn,ElementName=wbtn_2,Converter={StaticResource Zero.Converter.BooleanToVisibility}}" FontSize="25" Foreground="Green" FontFamily="{StaticResource Zero.FontFamily.Icon}"/>
                 <zctrl:ZeroSwitchButton x:Name="wbtn_2"/>
+                <zctrl:ZeroSwitchButton IsOn="{x:Null}" x:Name="wbtn_3"/>
             </StackPanel>
             <TextBlock>属性</TextBlock>
             <TextBlock Text="{Binding StartTime,ElementName=timeRange,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
