@@ -16,31 +16,35 @@
         </Setter>
     </Style>
 
-    <TextBlock x:Key="IsOffIcon" FontFamily="{StaticResource Zero.FontFamily.Icon}" Text="{StaticResource Zero.IconCode.ToggleLeft}" x:Shared="False"></TextBlock>
-    <TextBlock x:Key="IsOnIcon" FontFamily="{StaticResource Zero.FontFamily.Icon}" Text="{StaticResource Zero.IconCode.ToggleRight}" x:Shared="False"></TextBlock>
-    <TextBlock x:Key="IsNullIcon" FontFamily="{StaticResource Zero.FontFamily.Icon}" Text="{StaticResource Zero.IconCode.ToggleBorder}" x:Shared="False"></TextBlock>
+    <Border x:Key="IsOnIcon" Background="{StaticResource Zero.Static.Background}" Width="36" Height="18" CornerRadius="9" Padding="2">
+        <Ellipse Fill="White" Width="14" Height="14" HorizontalAlignment="Right" VerticalAlignment="Center"></Ellipse>
+    </Border>
+    <Border x:Key="IsOffIcon" Background="LightGray" Width="36" Height="18" CornerRadius="9" Padding="2">
+        <Ellipse Fill="WhiteSmoke" Width="14" Height="14" HorizontalAlignment="Left" VerticalAlignment="Center"></Ellipse>
+    </Border>
+    <Border x:Key="IsNullIcon" Background="LightGray" Width="36" Height="18" CornerRadius="9" Padding="2">
+    </Border>
 
     <Style TargetType="local:ZeroSwitchButton">
         <Setter Property="FontFamily" Value="{StaticResource Zero.FontFamily}"/>
         <Setter Property="FontSize" Value="{StaticResource Zero.FontSize}"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Zero.Static.Border}"/>
-        <Setter Property="Content" Value="OFF"/>
         <Setter Property="Icon" Value="{StaticResource IsOffIcon}"/>
-        <Setter Property="Background" Value="{StaticResource Zero.Static.Background}"/>
-        <Setter Property="Foreground" Value="{StaticResource Zero.Static.Foreground}"/>
-        <Setter Property="IsOnContent" Value="ON"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="IsOnIcon" Value="{StaticResource IsOnIcon}"/>
-        <Setter Property="IsOnBackground" Value="{StaticResource Zero.Static.Background}"/>
-        <Setter Property="IsOnForeground" Value="LightGreen"/>
-        <Setter Property="IsNullContent" Value="NULL"/>
+        <Setter Property="IsOnBackground" Value="Transparent"/>
+        <Setter Property="IsOnForeground" Value="Black"/>
         <Setter Property="IsNullIcon" Value="{StaticResource IsNullIcon}"/>
-        <Setter Property="IsNullBackground" Value="{StaticResource Zero.Static.Background}"/>
-        <Setter Property="IsNullForeground" Value="Gray"/>
+        <Setter Property="IsNullBackground" Value="Transparent"/>
+        <Setter Property="IsNullForeground" Value="Black"/>
         <Setter Property="BorderThickness" Value="{StaticResource Zero.BorderThickness}"/>
         <Setter Property="MaskBackground" Value="{StaticResource Zero.MaskBackground}"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Padding" Value="{StaticResource Zero.Padding}"/>
         <Setter Property="Margin" Value="{StaticResource Zero.Margin}"/>
         <Setter Property="Template">
