@@ -94,6 +94,7 @@ e094就是图标的代码编号。
 |![edad](Images/edad.png)|EDAD|Zero.IconCode.AsteriskBadge12|
 |![e723](Images/e723.png)|E723|Zero.IconCode.Attach|
 |![e8a2](Images/e8a2.png)|E8A2|Zero.IconCode.AttachCamera|
+|![e16c](Images/e16c.png)|E16C|Zero.IconCode.Attachment|
 |![e8d6](Images/e8d6.png)|E8D6|Zero.IconCode.Audio|
 |![e72b](Images/e72b.png)|E72B|Zero.IconCode.Back|
 |![ef1f](Images/ef1f.png)|EF1F|Zero.IconCode.BackgroundToggle|
@@ -358,6 +359,7 @@ e094就是图标的代码编号。
 |![e822](Images/e822.png)|E822|Zero.IconCode.Construction|
 |![e98f](Images/e98f.png)|E98F|Zero.IconCode.ConstructionCone|
 |![ea8d](Images/ea8d.png)|EA8D|Zero.IconCode.ConstructionSolid|
+|![f4ad](Images/f4ad.png)|F4AD|Zero.IconCode.Consumable|
 |![e77b](Images/e77b.png)|E77B|Zero.IconCode.Contact|
 |![e8d4](Images/e8d4.png)|E8D4|Zero.IconCode.Contact2|
 |![e779](Images/e779.png)|E779|Zero.IconCode.ContactInfo|
