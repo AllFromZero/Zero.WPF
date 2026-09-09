@@ -50,6 +50,7 @@
     <sys:String x:Key="Zero.IconCode.AsteriskBadge12">&#xedad;</sys:String>
     <sys:String x:Key="Zero.IconCode.Attach">&#xe723;</sys:String>
     <sys:String x:Key="Zero.IconCode.AttachCamera">&#xe8a2;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Attachment">&#xE16C;</sys:String>
     <sys:String x:Key="Zero.IconCode.Audio">&#xe8d6;</sys:String>
     <sys:String x:Key="Zero.IconCode.Back">&#xe72b;</sys:String>
     <sys:String x:Key="Zero.IconCode.BackgroundToggle">&#xef1f;</sys:String>
@@ -311,6 +312,7 @@
     <sys:String x:Key="Zero.IconCode.Connect">&#xe703;</sys:String>
     <sys:String x:Key="Zero.IconCode.ConnectApp">&#xed5c;</sys:String>
     <sys:String x:Key="Zero.IconCode.Connected">&#xf0b9;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Consumable">&#xf4ad;</sys:String>
     <sys:String x:Key="Zero.IconCode.Construction">&#xe822;</sys:String>
     <sys:String x:Key="Zero.IconCode.ConstructionCone">&#xe98f;</sys:String>
     <sys:String x:Key="Zero.IconCode.ConstructionSolid">&#xea8d;</sys:String>
