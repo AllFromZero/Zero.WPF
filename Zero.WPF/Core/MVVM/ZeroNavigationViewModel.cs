@@ -216,7 +216,7 @@ namespace Zero.WPF.Core.MVVM
             // 更新当前页并查询
             try
             {
-                QueryPage();
+                OnQuery(this);
                 CurrentPage = target;
             }
             catch (Exception ex)
@@ -224,15 +224,6 @@ namespace Zero.WPF.Core.MVVM
                 ShowGoToPageError(ex);
                 TargetPage = CurrentPage; // 回滚
             }
-        }
-
-        /// <summary>
-        /// 查询记录（子类必须重写）
-        /// </summary>
-        /// <remarks>需要更新 StartIndex 等属性</remarks>
-        protected virtual bool QueryPage()
-        {
-            throw new NotImplementedException("请重写 QueryPage() 方法");
         }
 
         #endregion

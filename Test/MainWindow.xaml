@@ -20,12 +20,7 @@
     <DockPanel LastChildFill="True">
         <zctrl:ZeroNavigationBar DockPanel.Dock="Bottom" CornerRadius="10" Height="60" VerticalAlignment="Bottom"></zctrl:ZeroNavigationBar>
         <WrapPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto">
-            <zctrl:ZeroButton Content ="ZeroButton" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <zctrl:ZeroButton.Icon>
-                    <TextBlock Text="00"/>
-                </zctrl:ZeroButton.Icon>
-            </zctrl:ZeroButton>
-            <zctrl:ZeroButton HorizontalAlignment="Left" VerticalAlignment="Top" IconWidth="20" IconHeight="20">
+            <zctrl:ZeroButton HorizontalAlignment="Left" VerticalAlignment="Top" IconWidth="20" IconHeight="20" Content="Button">
                 <zctrl:ZeroButton.Icon>
                     <TextBlock Text="0"/>
                 </zctrl:ZeroButton.Icon>
