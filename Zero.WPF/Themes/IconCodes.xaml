@@ -3,6 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <sys:String x:Key="Zero.IconCode.About">&#xE783;</sys:String>
+    <sys:String x:Key="Zero.IconCode.AboutFill">&#xe79a;</sys:String>
     <sys:String x:Key="Zero.IconCode.Accept">&#xe8fb;</sys:String>
     <sys:String x:Key="Zero.IconCode.AcceptMedium">&#xf78c;</sys:String>
     <sys:String x:Key="Zero.IconCode.Accident">&#xe81f;</sys:String>
@@ -751,6 +752,7 @@
     <sys:String x:Key="Zero.IconCode.LockscreenDesktop">&#xee3f;</sys:String>
     <sys:String x:Key="Zero.IconCode.LockScreenGlance">&#xee65;</sys:String>
     <sys:String x:Key="Zero.IconCode.Logs">&#xF4AF;</sys:String>
+    <sys:String x:Key="Zero.IconCode.LogsFill">&#xE798;</sys:String>
     <sys:String x:Key="Zero.IconCode.Look">&#xE7C5;</sys:String>
     <sys:String x:Key="Zero.IconCode.LowerBrightness">&#xec8a;</sys:String>
     <sys:String x:Key="Zero.IconCode.MachineConfig">&#xF8A6;</sys:String>

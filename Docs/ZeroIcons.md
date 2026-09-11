@@ -47,6 +47,7 @@ e094就是图标的代码编号。
 |图标|Unicode代码|资源名称|
 |:--:|:--:|:--:|
 |![E783](Images/e783.png)|E783|Zero.IconCode.About|
+|![E79a](Images/e79a.png)|E79A|Zero.IconCode.AboutFill|
 |![e8fb](Images/e8fb.png)|E8FB|Zero.IconCode.Accept|
 |![f78c](Images/f78c.png)|F78C|Zero.IconCode.AcceptMedium|
 |![e81f](Images/e81f.png)|E81F|Zero.IconCode.Accident|
@@ -794,6 +795,7 @@ e094就是图标的代码编号。
 |![ee3f](Images/ee3f.png)|EE3F|Zero.IconCode.LockscreenDesktop|
 |![ee65](Images/ee65.png)|EE65|Zero.IconCode.LockScreenGlance|
 |![F4AF](Images/f4af.png)|F4AF|Zero.IconCode.Logs|
+|![e798](Images/e798.png)|E798|Zero.IconCode.LogsFill|
 |![E155](Images/e155.png)|E155|Zero.IconCode.Look|
 |![ec8a](Images/ec8a.png)|EC8A|Zero.IconCode.LowerBrightness|
 |![F8A6](Images/f8a6.png)|F8A6|Zero.IconCode.MachineConfig|
