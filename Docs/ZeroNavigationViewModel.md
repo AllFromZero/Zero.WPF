@@ -12,7 +12,7 @@
 | LastPageCommand     | RelayCommand | 设置图标的边距，默认设置图标在左，与右侧文本间距5                            |
 | GotoPageCommand     | RelayCommand | 蒙版颜色画刷，可设置鼠标移过和下按时的颜色属性                               |
 | TargetPage          | int          | 目标页数                                                                     |
-| TotalCnt            | int          | 数据总数                                                                     |
+| TotalDataCnt        | int          | 数据总数                                                                     |
 | TotalPageCnt        | int          | 总页数                                                                       |
 | CurrentPage         | int          | 当前页面                                                                     |
 | StartIndex          | int          | 当前页面起始数据编号                                                         |
@@ -34,7 +34,6 @@
 | 函数                                                   | 说明                                                                 |
 | ------------------------------------------------------ | -------------------------------------------------------------------- |
 | protected virtual void OnGoToPage(int target)          | 导航到页面                                                          |
-| protected virtual bool QueryPage()                     | 查询记录，需要重新方法，否则会报错。使使用时需要更新StartIndex属性。 |
 | protected virtual void OnFirstPage(object? sender)     | 第一页                                                               |
 | protected virtual void OnNextPage(object? sender)      | 下一页                                                               |
 | protected virtual void OnPreviousPage(object? sender)  | 上一页                                                               |
@@ -45,3 +44,8 @@
 | protected virtual void ShowPageTooLessWarning()        | 页数太小方法                                                         |
 | protected virtual void ShowFirstPageWarning()          | 已经是首页                                                           |
 | protected virtual void ShowLastPageWarning()           | 已经是首页                                                           |
+
+**注：**
+
+- 页面切换时调用的数据查询功能默认调用基类的OnQuery函数，参数默认this。
+- 查询前应先获取数据的总量并赋值给TotalDataCnt，更新总页数。

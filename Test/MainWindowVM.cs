@@ -11,7 +11,7 @@ namespace Test
 
         protected override void OnViewLoaded(object? sender)
         {
-            TotalDataCnt = 0;
+            TotalDataCnt = 300;
         }
 
         /// <summary>
@@ -28,10 +28,10 @@ namespace Test
         /// 查询数据
         /// </summary>
         /// <param name="target"></param>
-        protected override bool QueryPage()
+        protected override void OnQuery(object? sender)
         {
-            Debug.WriteLine("导航到页面：" + TargetPage);
-            return true; 
+            //TotalDataCnt ++;
+            Debug.WriteLine("导航到页面：" + TargetPage + "/" + TotalPageCnt);
         }
     }
 }
