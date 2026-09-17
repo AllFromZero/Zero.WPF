@@ -1,5 +1,9 @@
 # 更新记录
 
+## v1.0.14
+
+- 修复Clock图标资源代码错误
+
 ## v1.0.13 2026.09.11
 
 - ZeroNavigationViewModel删除QueryPage()方法，改为直接调用基类的OnQuery()方法
