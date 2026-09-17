@@ -81,7 +81,7 @@
 
     <!-- ZeroDatePicker样式 -->
     <Style TargetType="{x:Type local:ZeroDatePicker}">
-        <Setter Property="Foreground" Value="{StaticResource Zero.Static.Foreground}"/>
+        <Setter Property="Foreground" Value="{StaticResource Zero.Input.Foreground}"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>
         <Setter Property="SelectedDateFormat" Value="Short"/>
         <Setter Property="Background" Value="{StaticResource Zero.Input.Background}"/>
