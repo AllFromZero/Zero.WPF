@@ -278,7 +278,7 @@
     <sys:String x:Key="Zero.IconCode.ClipboardList">&#xf0e3;</sys:String>
     <sys:String x:Key="Zero.IconCode.ClipboardListMirrored">&#xf0e4;</sys:String>
     <sys:String x:Key="Zero.IconCode.ClippingTool">&#xf406;</sys:String>
-    <sys:String x:Key="Zero.IconCode.Clock">&#xe917;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Clock">&#xe121;</sys:String>
     <sys:String x:Key="Zero.IconCode.ClosedCaptionsInternational">&#xf15f;</sys:String>
     <sys:String x:Key="Zero.IconCode.ClosePane">&#xe89f;</sys:String>
     <sys:String x:Key="Zero.IconCode.ClosePaneMirrored">&#xea49;</sys:String>
