@@ -16,13 +16,13 @@
         </Setter>
     </Style>
 
-    <Border x:Key="IsOnIcon" Background="{StaticResource Zero.Static.Background}" Width="36" Height="18" CornerRadius="9" Padding="2">
+    <Border x:Key="IsOnIcon" Background="{StaticResource Zero.Static.Background}" Width="36" Height="18" CornerRadius="9" Padding="2" x:Shared ="false">
         <Ellipse Fill="White" Width="14" Height="14" HorizontalAlignment="Right" VerticalAlignment="Center"></Ellipse>
     </Border>
-    <Border x:Key="IsOffIcon" Background="LightGray" Width="36" Height="18" CornerRadius="9" Padding="2">
+    <Border x:Key="IsOffIcon" Background="LightGray" Width="36" Height="18" CornerRadius="9" Padding="2" x:Shared ="false">
         <Ellipse Fill="WhiteSmoke" Width="14" Height="14" HorizontalAlignment="Left" VerticalAlignment="Center"></Ellipse>
     </Border>
-    <Border x:Key="IsNullIcon" Background="LightGray" Width="36" Height="18" CornerRadius="9" Padding="2">
+    <Border x:Key="IsNullIcon" Background="LightGray" Width="36" Height="18" CornerRadius="9" Padding="2" x:Shared ="false">
     </Border>
 
     <Style TargetType="local:ZeroSwitchButton">
