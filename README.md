@@ -13,6 +13,8 @@ WPF控件库
 
 自定义控件命名空间。
 
+![控件](/Docs/Images/Zero.WPF.Controls.png)
+
 ### [ZeroButton](Docs/ZeroButton.md)
 
 按钮控件，在WPF基础控件的基础上增加圆角，图标等属性。
@@ -54,6 +56,12 @@ WPF控件库
 ### [ZeroRadioButton](Docs/ZeroRadioButton.md)
 
 单选按钮控件，在WPF基础控件的基础上增加圆角，图标等属性。
+
+### [ZeroRingProgressBar](Docs/ZeroRingProgressBar.md)
+
+环形进度条控件
+
+![环形进度条](/Docs/Images/ZeroRingProgressBar1.png)
 
 ### [ZeroSwitchButton](Docs/ZeroSwitchButton.md)
 

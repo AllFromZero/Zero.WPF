@@ -30,7 +30,7 @@
             <zctrl:ZeroPasswordBox x:Name="zeroPasswordBox" Password="{Binding Text,ElementName=txt,Mode=TwoWay}" MaskText="请输入密码" HorizontalContentAlignment="Center" InputScope="Number"/>
             <TextBlock Text="{Binding Text,ElementName=zeroPasswordBox}" FontSize="14"/>
             <TextBlock Text="{Binding Password,ElementName=zeroPasswordBox}" FontSize="14"/>
-            <TextBlock Text="数值：" FontSize="14" Margin="0,10,0,0"/>
+            <TextBlock Text="数值：" FontSize="14" Margin="0,10,0,0"/> 
             <TextBlock Text="{Binding DecimalValue,ElementName=zeroNumBox}" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0"/>
             <TextBlock Text="文本：" FontSize="14" Margin="0,10,0,0"/>
             <TextBlock Text="{Binding Text,ElementName=zeroNumBox}" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0"/>
@@ -88,15 +88,48 @@
                 <zctrl:ZeroSwitchButton x:Name="wbtn_2"/>
                 <zctrl:ZeroSwitchButton IsOn="{x:Null}" x:Name="wbtn_3"/>
             </StackPanel>
-            <TextBlock>属性</TextBlock>
-            <TextBlock Text="{Binding StartTime,ElementName=timeRange,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
-            <TextBlock Text="{Binding EndTime,ElementName=timeRange,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
-            <TextBlock>绑定数据</TextBlock>
-            <TextBlock Text="{Binding QueryStartTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
-            <TextBlock Text="{Binding QueryEndTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></TextBlock>
             <zctrl:ZeroDateRangePicker x:Name="timeRange" Padding="5" StartTime="{Binding QueryStartTime}" EndTime="{Binding QueryEndTime}"/>
             <zctrl:ZeroDatePicker SelectedDate="2026/09/17"></zctrl:ZeroDatePicker>
-            <TextBlock FontFamily="{StaticResource Zero.FontFamily.Icon}">&#xe794;</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Grid HorizontalAlignment="Center" Width="50" Height="50">
+                    <Ellipse Stroke="#FF404040" StrokeThickness="4" RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                    <TextBlock Text="{Binding ElementName=valueSlider, Path=Value, StringFormat={}{0:F0}%}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                    <Ellipse Stroke="SkyBlue" StrokeThickness="4" StrokeDashCap="Round" StrokeDashOffset="10" StrokeDashArray="20,200" RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                </Grid>
+                <zctrl:ZeroRingProgressBar Maximum="100" Value="{Binding ElementName=valueSlider, Path=Value}" IsIndeterminate="True" IsShowPercent="False" Minimum="0" Height="50" Width="50" Margin="10"></zctrl:ZeroRingProgressBar>
+                <zctrl:ZeroRingProgressBar Maximum="100" Value="{Binding ElementName=valueSlider, Path=Value}" TrackStrokeThickness="10" IndicatorMargin="2.5" Minimum="0" Height="50" Width="50" Margin="10"></zctrl:ZeroRingProgressBar>
+                <zctrl:ZeroRingProgressBar Maximum="100" Value="{Binding ElementName=valueSlider, Path=Value}" TrackStrokeThickness="1" TracMargin="2" Minimum="0" Height="50" Width="50" Margin="10"></zctrl:ZeroRingProgressBar>
+                <zctrl:ZeroRingProgressBar Maximum="100" Value="{Binding ElementName=valueSlider, Path=Value}" Minimum="0" Height="50" Width="30" Margin="10"></zctrl:ZeroRingProgressBar>
+            </StackPanel>
+            <StackPanel>
+                <Slider x:Name="valueSlider" Maximum="100"></Slider>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding ElementName=valueSlider, Path=Minimum}"></TextBlock>
+                    <TextBlock>-</TextBlock>
+                    <TextBlock Text="{Binding ElementName=valueSlider, Path=Value,StringFormat={}{0:F2}}"></TextBlock>
+                    <TextBlock>-</TextBlock>
+                    <TextBlock Text="{Binding ElementName=valueSlider, Path=Maximum}"></TextBlock>
+                </StackPanel>
+                <ProgressBar Height="10"></ProgressBar>
+            </StackPanel>
         </WrapPanel>
     </DockPanel>
 </Window>
