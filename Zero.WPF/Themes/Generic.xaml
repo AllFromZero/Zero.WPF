@@ -13,6 +13,7 @@
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroNumericBox.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroNavigationBar.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroRadioButton.xaml"/>
+        <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroRingProgressBar.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroSwitchButton.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroTextBox.xaml"/>
         <ResourceDictionary Source="/Zero.WPF;component/Controls/ZeroPasswordBox.xaml"/>

@@ -1,5 +1,11 @@
 # 更新记录
 
+## v1.0.15 2026.09.27
+
+- 添加ZeroRingProgressBar控件
+
+![环形进度条](/Docs/Images/ZeroRingProgressBar.png)
+
 ## v1.0.14 2026.09.24
 
 - 修复Clock图标资源代码错误
@@ -20,6 +26,7 @@
 ## v1.0.11 2026.09.08
 
 - 修改开关按钮的默认样式，改为填充背景样式
+
 ![alt text](Docs/Images/switchbutton.png)
 
 ## v1.0.10 2026.09.04
