@@ -44,7 +44,7 @@
 | IsViewEnabled         | bool          | 试图是否使能                                          |
 | IsOn                  | bool          | 是否启动                                              |
 | IsViewLoaded          | bool          | 是否已加载                                            |
-| IsDataLoading         | bool          | 数据加载中                                            |
+| IsBusy                | bool          | 是否忙碌，异步操作的状态标识                          |
 | IsEdit                | bool          | 是否启动编辑                                          |
 | ViewTitle             | string?       | 标题                                                  |
 | Prompt                | string?       | 提示                                                  |
@@ -79,8 +79,6 @@
 | private void Refresh(object? sender)             | 刷新                                   |
 | private void Cancel(object? sender)              | 取消                                   |
 | private void Confirm(object? sender)             | 确认                                   |
-| private void Upload(object? sender)              | 上传                                   |
-| private void Download(object? sender)            | 下载                                   |
 | private void Close(object? sender)               | 关闭                                   |
 | private void Closing(object? sender)             | 关闭中                                 |
 | private void Closed(object? sender)              | 已关闭                                 |
@@ -94,6 +92,8 @@
 | private void InsertBefore(object? sender)        | 插入到...之前命令                      |
 | private void InsertAfter(object? sender)         | 插入到...之后命令                      |
 | private async Task LoadDataAsync(object? sender) | 异步方法，加载指令                     |
+| private async Task Upload(object? sender)        | 异步上传                                   |
+| private async Task Download(object? sender)      | 异步下载                                   |
 
 使用时，Xaml界面绑定对应的Command，C#页面直接重写对应的方法即可，基类模型默认关联对应的函数方法。
 
@@ -119,8 +119,6 @@
 | protected virtual void OnRefresh(object? sender)        | 刷新                           |
 | protected virtual void OnCancel(object? sender)         | 取消                           |
 | protected virtual void OnConfirm(object? sender)        | 确认                           |
-| protected virtual void OnUpload(object? sender)         | 上传                           |
-| protected virtual void OnDownload(object? sender)       | 下载                           |
 | protected virtual void OnClose(object? sender)          | 关闭                           |
 | protected virtual void OnClosing(object? sender)        | 关闭中                         |
 | protected virtual void OnClosed(object? sender)         | 已关闭                         |
@@ -134,6 +132,8 @@
 | protected virtual void OnInsertBefore(object? sender)   | 插入到...之前命令              |
 | protected virtual void OnInsertAfter(object? sender)    | 插入到...之后命令              |
 | protected virtual Task OnLoadDataAsync(object? sender)  | 数据加载                       |
+| protected virtual Task OnUpload(object? sender)         | 上传                           |
+| protected virtual Task OnDownload(object? sender)       | 下载                           |
 
 ## 方法
 
