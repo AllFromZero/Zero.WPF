@@ -244,6 +244,10 @@ TextBlock的样式集，详[TextBlockStyles.md](/Docs/Styles/TextBlockStyles.md)
     <zcvt:OrMultiConverter x:Key="Zero.Converter.Or"/>
 ```
 
+## 更新记录
+
+详见[ChangeLog.md](/CHANGELOG.md)
+
 ## 致谢
 
 MIT License

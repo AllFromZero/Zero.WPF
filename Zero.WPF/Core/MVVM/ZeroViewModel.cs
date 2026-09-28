@@ -63,11 +63,11 @@ namespace Zero.WPF.Core.MVVM
         public partial bool IsViewLoaded { get; set; }
 
         /// <summary>
-        /// 是否正在加载数据
+        /// 是否正在忙碌
         /// </summary>
         /// <remarks>用于异步操作状态</remarks>
         [ObservableProperty]
-        public partial bool IsDataLoading { get; set; }
+        public partial bool IsBusy { get; set; }
 
         /// <summary>
         /// 提示
@@ -176,6 +176,15 @@ namespace Zero.WPF.Core.MVVM
         #endregion Events
 
         #region Commands (使用 RelayCommand 特性)
+
+        /// <summary>
+        /// 复制命令
+        /// </summary>
+        [RelayCommand]
+        private void Copy(object? sender)
+        {
+            OnCopy(sender);
+        }
 
         /// <summary>
         /// 编辑命令
@@ -342,24 +351,6 @@ namespace Zero.WPF.Core.MVVM
         }
 
         /// <summary>
-        /// 上传命令
-        /// </summary>
-        [RelayCommand]
-        private void Upload(object? sender)
-        {
-            OnUpload(sender);
-        }
-
-        /// <summary>
-        /// 下载命令
-        /// </summary>
-        [RelayCommand]
-        private void Download(object? sender)
-        {
-            OnDownload(sender);
-        }
-
-        /// <summary>
         /// 关闭命令
         /// </summary>
         [RelayCommand]
@@ -504,9 +495,9 @@ namespace Zero.WPF.Core.MVVM
         [RelayCommand]
         private async Task LoadDataAsync(object? sender)
         {
-            if (IsDataLoading) return;
+            if (IsBusy) return;
 
-            IsDataLoading = true;
+            IsBusy = true;
 
             try
             {
@@ -514,7 +505,47 @@ namespace Zero.WPF.Core.MVVM
             }
             finally
             {
-                IsDataLoading = false;
+                IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// 异步下载命令
+        /// </summary>
+        [RelayCommand]
+        private async Task DownloadAsync(object? sender)
+        {
+            if (IsBusy) return;
+
+            IsBusy = true;
+
+            try
+            {
+                await OnDownloadAsync(sender);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// 异步上传命令
+        /// </summary>
+        [RelayCommand]
+        private async Task UploadAsync(object? sender)
+        {
+            if (IsBusy) return;
+
+            IsBusy = true;
+
+            try
+            {
+                await OnUploadAsync(sender);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 
@@ -566,6 +597,13 @@ namespace Zero.WPF.Core.MVVM
         #endregion Event Invokers
 
         #region Virtual Methods (可重写方法)
+
+        /// <summary>
+        /// 复制
+        /// </summary>
+        protected virtual void OnCopy(object? sender)
+        {
+        }
 
         /// <summary>
         /// 编辑
@@ -814,6 +852,22 @@ namespace Zero.WPF.Core.MVVM
         /// 异步加载数据（子类可重写）
         /// </summary>
         protected virtual Task OnLoadDataAsync(object? sender)
+        {
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// 异步上传数据（子类可重写）
+        /// </summary>
+        protected virtual Task OnUploadAsync(object? sender)
+        {
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// 异步下载数据（子类可重写）
+        /// </summary>
+        protected virtual Task OnDownloadAsync(object? sender)
         {
             return Task.CompletedTask;
         }
