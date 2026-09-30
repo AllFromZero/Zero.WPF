@@ -712,6 +712,7 @@ e094就是图标的代码编号。
 |![e727](Images/e727.png)|E727|Zero.IconCode.InPrivate|
 |![e961](Images/e961.png)|E961|Zero.IconCode.Input|
 |![ec24](Images/ec24.png)|EC24|Zero.IconCode.InsiderHubApp|
+|![ec7a](Images/ec7a.png)|EC7A|Zero.IconCode.Install|
 |![f7b1](Images/f7b1.png)|F7B1|Zero.IconCode.InstertWords|
 |![f7b2](Images/f7b2.png)|F7B2|Zero.IconCode.InstertWordsFill|
 |![f404](Images/f404.png)|F404|Zero.IconCode.InteractiveDashboard|

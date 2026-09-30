@@ -669,6 +669,7 @@
     <sys:String x:Key="Zero.IconCode.InPrivate">&#xe727;</sys:String>
     <sys:String x:Key="Zero.IconCode.Input">&#xe961;</sys:String>
     <sys:String x:Key="Zero.IconCode.InsiderHubApp">&#xec24;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Install">&#xec7a;</sys:String>
     <sys:String x:Key="Zero.IconCode.InstertWords">&#xf7b1;</sys:String>
     <sys:String x:Key="Zero.IconCode.InstertWordsFill">&#xf7b2;</sys:String>
     <sys:String x:Key="Zero.IconCode.InteractiveDashboard">&#xf404;</sys:String>
