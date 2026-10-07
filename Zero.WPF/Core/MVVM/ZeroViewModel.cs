@@ -306,6 +306,15 @@ namespace Zero.WPF.Core.MVVM
         }
 
         /// <summary>
+        /// 复核命令
+        /// </summary>
+        [RelayCommand]
+        private void Review(object? sender)
+        {
+            OnReview(sender);
+        }
+
+        /// <summary>
         /// 恢复命令
         /// </summary>
         [RelayCommand]
@@ -707,6 +716,13 @@ namespace Zero.WPF.Core.MVVM
         /// 修改
         /// </summary>
         protected virtual void OnModify(object? sender)
+        {
+        }
+
+        /// <summary>
+        /// 复核
+        /// </summary>
+        protected virtual void OnReview(object? sender)
         {
         }
 
