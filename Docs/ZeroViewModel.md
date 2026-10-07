@@ -21,6 +21,7 @@
 | AddCommand            | RelayCommand? | 增加命令                                              |
 | DeleteCommand         | RelayCommand? | 删除命令                                              |
 | ModifyCommand         | RelayCommand? | 修改                                                  |
+| ReviewCommand         | RelayCommand? | 复核命令                                              |
 | RevertCommand         | RelayCommand? | 恢复命令                                              |
 | QueryCommand          | RelayCommand? | 查询命令                                              |
 | RefreshCommand        | RelayCommand? | 刷新                                                  |
@@ -74,6 +75,7 @@
 | private void Add(object? sender)                 | 添加函数                               |
 | private void Delete(object? sender)              | 删除                                   |
 | private void Modify(object? sender)              | 修改                                   |
+| private void Review(object? sender)              | 复核函数                               |
 | private void Revert(object? sender)              | 恢复函数                               |
 | private void Query(object? sender)               | 查询函数                               |
 | private void Refresh(object? sender)             | 刷新                                   |
@@ -114,6 +116,7 @@
 | protected virtual void OnAdd(object? sender)            | 添加函数                       |
 | protected virtual void OnDelete(object? sender)         | 删除                           |
 | protected virtual void OnModify(object? sender)         | 修改                           |
+| protected virtual void OnReview(object? sender)         | 复核函数                       |
 | protected virtual void OnRevert(object? sender)         | 恢复函数                       |
 | protected virtual void OnQuery(object? sender)          | 查询函数                       |
 | protected virtual void OnRefresh(object? sender)        | 刷新                           |
