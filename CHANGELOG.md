@@ -5,7 +5,8 @@
 - 添加默认CopyCommand事件
 - 上传和下载命令函数改成异步操作
 - 添加加Install图标预定义
-- 添加ReviewCommand事件
+- 添加ReviewCommand命令
+- 添加DetailsCommand命令
 
 ## v1.0.15 2026.09.27
 
