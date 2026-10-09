@@ -187,6 +187,15 @@ namespace Zero.WPF.Core.MVVM
         }
 
         /// <summary>
+        /// 详情命令
+        /// </summary>
+        [RelayCommand]
+        private void Details(object? sender)
+        {
+            OnDetails(sender);
+        }
+
+        /// <summary>
         /// 编辑命令
         /// </summary>
         [RelayCommand]
@@ -611,6 +620,13 @@ namespace Zero.WPF.Core.MVVM
         /// 复制
         /// </summary>
         protected virtual void OnCopy(object? sender)
+        {
+        }
+
+        /// <summary>
+        /// 详情
+        /// </summary>
+        protected virtual void OnDetails(object? sender)
         {
         }
 

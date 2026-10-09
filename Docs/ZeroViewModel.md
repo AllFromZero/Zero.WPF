@@ -7,6 +7,7 @@
 
 | 属性名                | 参数          | 说明                                                  |
 | --------------------- | ------------- | ----------------------------------------------------- |
+| DetailsCommand        | RelayCommand? | 编辑命令                                              |
 | EditCommand           | RelayCommand? | 编辑命令                                              |
 | VisibleChangedCommand | RelayCommand? | 显示变化                                              |
 | ViewLoadedCommand     | RelayCommand? | 视图加载命令                                          |
@@ -62,7 +63,8 @@
 
 | 函数                                             | 说明                                   |
 | ------------------------------------------------ | -------------------------------------- |
-| private void Edit(object? sender)                | 编辑，默认半丁EditCommand              |
+| private void Details(object? sender)             | 详情                                   |
+| private void Edit(object? sender)                | 编辑                                   |
 | private void ViewLoaded(object? sender)          | 页面加载，加载后 IsViewLoaded置为true  |
 | private void ViewUnLoaded(object? sender)        | 卸载页面，卸载后 IsViewLoaded置为false |
 | private void VisibleChanged(object? sender)      | 可见属性变更                           |
@@ -94,8 +96,8 @@
 | private void InsertBefore(object? sender)        | 插入到...之前命令                      |
 | private void InsertAfter(object? sender)         | 插入到...之后命令                      |
 | private async Task LoadDataAsync(object? sender) | 异步方法，加载指令                     |
-| private async Task Upload(object? sender)        | 异步上传                                   |
-| private async Task Download(object? sender)      | 异步下载                                   |
+| private async Task Upload(object? sender)        | 异步上传                               |
+| private async Task Download(object? sender)      | 异步下载                               |
 
 使用时，Xaml界面绑定对应的Command，C#页面直接重写对应的方法即可，基类模型默认关联对应的函数方法。
 
@@ -103,6 +105,7 @@
 
 | 函数                                                    | 说明                           |
 | ------------------------------------------------------- | ------------------------------ |
+| protected virtual void OnDetails(object? sender)        | 详情                           |
 | protected virtual void OnEdit(object? sender)           | 编辑，私有方法中调用，支持重写 |
 | protected virtual void OnViewLoaded(object? sender)     | 页面加载                       |
 | protected virtual void OnViewUnLoaded(object? sender)   | 卸载页面                       |
