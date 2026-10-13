@@ -32,5 +32,6 @@
     <sys:Double x:Key="Zero.FontSize">16</sys:Double>
     <FontFamily x:Key="Zero.FontFamily">宋体</FontFamily>
     <FontFamily x:Key="Zero.FontFamily.Icon">pack://application:,,,/Zero.WPF;component/Resources/Fonts/#ZeroIcons</FontFamily>
+    <FontFamily x:Key="Zero.FontFamily.SourceHanSerif">pack://application:,,,/Zero.WPF;component/Resources/Fonts/#Source Han Serif CN VF</FontFamily>
     
 </ResourceDictionary>

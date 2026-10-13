@@ -129,6 +129,7 @@
                     <TextBlock Text="{Binding ElementName=valueSlider, Path=Maximum}"></TextBlock>
                 </StackPanel>
                 <ProgressBar Height="10"></ProgressBar>
+                <TextBlock Text="{StaticResource Zero.IconCode.ManageLine}" Style="{StaticResource Zero.TextBlock.Icon.Style}"></TextBlock>
             </StackPanel>
         </WrapPanel>
     </DockPanel>

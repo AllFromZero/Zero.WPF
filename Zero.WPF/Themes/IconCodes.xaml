@@ -771,6 +771,8 @@
     <sys:String x:Key="Zero.IconCode.Maintenance1">&#xF4AB;</sys:String>
     <sys:String x:Key="Zero.IconCode.MaintenanceFill">&#xE758;</sys:String>
     <sys:String x:Key="Zero.IconCode.Manage">&#xe912;</sys:String>
+    <sys:String x:Key="Zero.IconCode.ManageFill">&#xE79B;</sys:String>
+    <sys:String x:Key="Zero.IconCode.ManageLine">&#xE79F;</sys:String>
     <sys:String x:Key="Zero.IconCode.MapCompassBottom">&#xe813;</sys:String>
     <sys:String x:Key="Zero.IconCode.MapCompassTop">&#xe812;</sys:String>
     <sys:String x:Key="Zero.IconCode.MapDirections">&#xe816;</sys:String>
@@ -1204,6 +1206,7 @@
     <sys:String x:Key="Zero.IconCode.RuntimeLog">&#xF4A8;</sys:String>
     <sys:String x:Key="Zero.IconCode.Safe">&#xf540;</sys:String>
     <sys:String x:Key="Zero.IconCode.Sample">&#xF499;</sys:String>
+    <sys:String x:Key="Zero.IconCode.SampleRack">&#xE79C;</sys:String>
     <sys:String x:Key="Zero.IconCode.Save">&#xe74e;</sys:String>
     <sys:String x:Key="Zero.IconCode.SaveAs">&#xe792;</sys:String>
     <sys:String x:Key="Zero.IconCode.SaveCopy">&#xea35;</sys:String>
@@ -1446,7 +1449,9 @@
     <sys:String x:Key="Zero.IconCode.ToggleBorder">&#xec12;</sys:String>
     <sys:String x:Key="Zero.IconCode.ToggleFilled">&#xec11;</sys:String>
     <sys:String x:Key="Zero.IconCode.ToggleLeft">&#xf19e;</sys:String>
+    <sys:String x:Key="Zero.IconCode.ToggleLeftFill">&#xE79D;</sys:String>
     <sys:String x:Key="Zero.IconCode.ToggleRight">&#xf19f;</sys:String>
+    <sys:String x:Key="Zero.IconCode.ToggleRightFill">&#xE79E;</sys:String>
     <sys:String x:Key="Zero.IconCode.ToggleThumb">&#xec14;</sys:String>
     <sys:String x:Key="Zero.IconCode.TollSolid">&#xf161;</sys:String>
     <sys:String x:Key="Zero.IconCode.ToolTip">&#xe82f;</sys:String>
@@ -1469,6 +1474,7 @@
     <sys:String x:Key="Zero.IconCode.TriggerLeft">&#xf10a;</sys:String>
     <sys:String x:Key="Zero.IconCode.TriggerRight">&#xf10b;</sys:String>
     <sys:String x:Key="Zero.IconCode.Trim">&#xe78a;</sys:String>
+    <sys:String x:Key="Zero.IconCode.Tube">&#xF4AD;</sys:String>
     <sys:String x:Key="Zero.IconCode.TVMonitor">&#xe7f4;</sys:String>
     <sys:String x:Key="Zero.IconCode.TVMonitorSelected">&#xec77;</sys:String>
     <sys:String x:Key="Zero.IconCode.TwoBars">&#xe906;</sys:String>

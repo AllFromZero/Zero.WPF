@@ -814,6 +814,8 @@ e094就是图标的代码编号。
 |![F4AB](Images/f4ab.png)|F4AB|Zero.IconCode.Maintenance1|
 |![E758](Images/e758.png)|E758|Zero.IconCode.MaintenanceFill|
 |![e912](Images/e912.png)|E912|Zero.IconCode.Manage|
+|![E79B](Images/E79B.png)|E79B|Zero.IconCode.ManageFill|
+|![E79F](Images/E79F.png)|E79F|Zero.IconCode.ManageLine|
 |![e813](Images/e813.png)|E813|Zero.IconCode.MapCompassBottom|
 |![e812](Images/e812.png)|E812|Zero.IconCode.MapCompassTop|
 |![e816](Images/e816.png)|E816|Zero.IconCode.MapDirections|
@@ -1247,6 +1249,7 @@ e094就是图标的代码编号。
 |![F4A8](Images/f4a8.png)|F4A8|Zero.IconCode.RuntimeLog|
 |![f540](Images/f540.png)|F540|Zero.IconCode.Safe|
 |![F499](Images/f499.png)|F499|Zero.IconCode.Sample|
+|![e79c](Images/e79c.png)|E79C|Zero.IconCode.SampleRack|
 |![e74e](Images/e74e.png)|E74E|Zero.IconCode.Save|
 |![e792](Images/e792.png)|E792|Zero.IconCode.SaveAs|
 |![ea35](Images/ea35.png)|EA35|Zero.IconCode.SaveCopy|
@@ -1489,7 +1492,9 @@ e094就是图标的代码编号。
 |![ec12](Images/ec12.png)|EC12|Zero.IconCode.ToggleBorder|
 |![ec11](Images/ec11.png)|EC11|Zero.IconCode.ToggleFilled|
 |![f19e](Images/f19e.png)|F19E|Zero.IconCode.ToggleLeft|
+|![E79D](Images/E79D.png)|E79D|Zero.IconCode.ToggleLeftFill|
 |![f19f](Images/f19f.png)|F19F|Zero.IconCode.ToggleRight|
+|![E79E](Images/E79E.png)|E79E|Zero.IconCode.ToggleRightFill|
 |![ec14](Images/ec14.png)|EC14|Zero.IconCode.ToggleThumb|
 |![f161](Images/f161.png)|F161|Zero.IconCode.TollSolid|
 |![e82f](Images/e82f.png)|E82F|Zero.IconCode.ToolTip|
@@ -1512,6 +1517,7 @@ e094就是图标的代码编号。
 |![f10a](Images/f10a.png)|F10A|Zero.IconCode.TriggerLeft|
 |![f10b](Images/f10b.png)|F10B|Zero.IconCode.TriggerRight|
 |![e78a](Images/e78a.png)|E78A|Zero.IconCode.Trim|
+|![F4AD](Images/F4AD.png)|F4AD|Zero.IconCode.Tube|
 |![e7f4](Images/e7f4.png)|E7F4|Zero.IconCode.TVMonitor|
 |![ec77](Images/ec77.png)|EC77|Zero.IconCode.TVMonitorSelected|
 |![e906](Images/e906.png)|E906|Zero.IconCode.TwoBars|

@@ -25,10 +25,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\Source_Han_Serif_CN_VF_Regular.ttf" />
     <None Remove="Resources\Fonts\ZeroIcons.ttf" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Fonts\Source_Han_Serif_CN_VF_Regular.ttf" />
     <Resource Include="Resources\Fonts\ZeroIcons.ttf" />
   </ItemGroup>
 
