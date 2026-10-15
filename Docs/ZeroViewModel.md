@@ -28,6 +28,7 @@
 | RefreshCommand        | RelayCommand? | 刷新                                                  |
 | CancelCommand         | RelayCommand? | 取消命令                                              |
 | ConfirmCommand        | RelayCommand? | 确认命令                                              |
+| UpdateCommand         | RelayCommand? | 更新命令                                              |
 | UploadCommand         | RelayCommand? | 上传命令                                              |
 | DownloadCommand       | RelayCommand? | 下载命令                                              |
 | CloseCommand          | RelayCommand? | 关闭命令                                              |
@@ -96,6 +97,7 @@
 | private void InsertBefore(object? sender)        | 插入到...之前命令                      |
 | private void InsertAfter(object? sender)         | 插入到...之后命令                      |
 | private async Task LoadDataAsync(object? sender) | 异步方法，加载指令                     |
+| private async Task Update(object? sender)        | 异步更新                               |
 | private async Task Upload(object? sender)        | 异步上传                               |
 | private async Task Download(object? sender)      | 异步下载                               |
 
@@ -138,6 +140,7 @@
 | protected virtual void OnInsertBefore(object? sender)   | 插入到...之前命令              |
 | protected virtual void OnInsertAfter(object? sender)    | 插入到...之后命令              |
 | protected virtual Task OnLoadDataAsync(object? sender)  | 数据加载                       |
+| protected virtual Task OnUpdate(object? sender)         | 更新                           |
 | protected virtual Task OnUpload(object? sender)         | 上传                           |
 | protected virtual Task OnDownload(object? sender)       | 下载                           |
 

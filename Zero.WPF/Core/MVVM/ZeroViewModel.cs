@@ -548,6 +548,26 @@ namespace Zero.WPF.Core.MVVM
         }
 
         /// <summary>
+        /// 异步更新命令
+        /// </summary>
+        [RelayCommand]
+        private async Task UpdateAsync(object? sender)
+        {
+            if (IsBusy) return;
+
+            IsBusy = true;
+
+            try
+            {
+                await OnUpdateAsync(sender);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        /// <summary>
         /// 异步上传命令
         /// </summary>
         [RelayCommand]
@@ -884,6 +904,14 @@ namespace Zero.WPF.Core.MVVM
         /// 异步加载数据（子类可重写）
         /// </summary>
         protected virtual Task OnLoadDataAsync(object? sender)
+        {
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// 异步更新数据（子类可重写）
+        /// </summary>
+        protected virtual Task OnUpdateAsync(object? sender)
         {
             return Task.CompletedTask;
         }
