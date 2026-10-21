@@ -26,7 +26,7 @@
                 </zctrl:ZeroButton.Icon>
             </zctrl:ZeroButton>
             <zctrl:ZeroTextBox x:Name="txt" MaskText="今天适合好日子" Text=""/>
-            <zctrl:ZeroNumericBox x:Name="zeroNumBox" MaskText="红红火火" DecimalValue="{Binding Text,ElementName=txt}" HorizontalContentAlignment="Center" Text="" MinValue="-100" DecimalPlaces="2" InputScope="Number"/>
+            <zctrl:ZeroNumericBox x:Name="zeroNumBox" MaskText="请输入数字" DecimalValue="{Binding Text,ElementName=txt}" HorizontalContentAlignment="Center" Text="" MinValue="-100" DecimalPlaces="2" InputScope="Number"/>
             <zctrl:ZeroPasswordBox x:Name="zeroPasswordBox" Password="{Binding Text,ElementName=txt,Mode=TwoWay}" MaskText="请输入密码" HorizontalContentAlignment="Center" InputScope="Number"/>
             <TextBlock Text="{Binding Text,ElementName=zeroPasswordBox}" FontSize="14"/>
             <TextBlock Text="{Binding Password,ElementName=zeroPasswordBox}" FontSize="14"/>

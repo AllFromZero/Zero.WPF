@@ -133,18 +133,20 @@ namespace Zero.WPF.Controls
                 if (newVal > numBox.MaxValue)
                 {
                     // 使用 SetCurrentValue 以不破坏绑定的方式调整值到 MaxValue
-                    numBox.SetCurrentValue(DecimalValueProperty, numBox.MaxValue);
+                    newVal = numBox.MaxValue;
                     return;
                 }
                 else if (newVal < numBox.MinValue)
                 {
-                    numBox.SetCurrentValue(DecimalValueProperty, numBox.MinValue);
+                    newVal = numBox.MinValue;
                     return;
                 }
+                newVal = decimal.Round(newVal, numBox.DecimalPlaces);
+                numBox.SetCurrentValue(DecimalValueProperty, newVal);
             }
 
             numBox._isUpadteText = true;
-            numBox.Text = numBox.DecimalValue?.ToString("F" + numBox.DecimalPlaces);
+            numBox.Text = numBox.DecimalValue?.ToString();
             numBox._isUpadteText = false;
         }
 
@@ -172,7 +174,7 @@ namespace Zero.WPF.Controls
                 // 超出最大值或者最小值后由于DecimalValue值固定，不会触发变更事件，需要手动刷新Text字符串值
                 if (DecimalValue >= MaxValue || DecimalValue <= MinValue)
                 {
-                    Text = this.DecimalValue?.ToString("F" + this.DecimalPlaces);
+                    Text = this.DecimalValue?.ToString();
                 }
             }
 
