@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using Zero.WPF.Core.MVVM;
@@ -8,7 +10,11 @@ namespace Test
 {
     public partial class MainWindowVM : ZeroNavigationViewModel
     {
+        public ObservableCollection<CompareOperator> CompareOperators { get; set; } = [.. Enum.GetValues<CompareOperator>()];
 
+        [ObservableProperty]
+        public partial CompareOperator CompareOperator { get; set; }
+ 
         protected override void OnViewLoaded(object? sender)
         {
             TotalDataCnt = 300;

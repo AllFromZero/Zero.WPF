@@ -12,6 +12,11 @@
     <Window.DataContext>
         <local:MainWindowVM x:Name="mainVM"/>
     </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <local:CompareOperatorToStringConverter x:Key="compareOperatorToString"/>
+        </ResourceDictionary>
+    </Window.Resources>
     <behaviors:Interaction.Triggers>
         <behaviors:EventTrigger EventName="Loaded">
             <behaviors:InvokeCommandAction Command="{Binding ViewLoadedCommand}"></behaviors:InvokeCommandAction>
@@ -30,7 +35,7 @@
             <zctrl:ZeroPasswordBox x:Name="zeroPasswordBox" Password="{Binding Text,ElementName=txt,Mode=TwoWay}" MaskText="请输入密码" HorizontalContentAlignment="Center" InputScope="Number"/>
             <TextBlock Text="{Binding Text,ElementName=zeroPasswordBox}" FontSize="14"/>
             <TextBlock Text="{Binding Password,ElementName=zeroPasswordBox}" FontSize="14"/>
-            <TextBlock Text="数值：" FontSize="14" Margin="0,10,0,0"/> 
+            <TextBlock Text="数值：" FontSize="14" Margin="0,10,0,0"/>
             <TextBlock Text="{Binding DecimalValue,ElementName=zeroNumBox}" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0"/>
             <TextBlock Text="文本：" FontSize="14" Margin="0,10,0,0" FontFamily="{StaticResource Zero.FontFamily.SourceHanSerif}"/>
             <TextBlock Text="{Binding Text,ElementName=zeroNumBox}" HorizontalAlignment="Center" FontSize="14" Margin="0,10,0,0"/>
@@ -38,10 +43,19 @@
             <CheckBox IsThreeState="true" FontSize="14"></CheckBox>
             <zctrl:ZeroSwitchButton FontSize="14" IsOn="True"></zctrl:ZeroSwitchButton>
             <zctrl:ZeroSwitchButton FontSize="14" IsThreeState="true"></zctrl:ZeroSwitchButton>
-            <zctrl:ZeroComboBox IsEditable="True" Text="默认">
-                <ComboBoxItem>1</ComboBoxItem>
-                <ComboBoxItem>2</ComboBoxItem>
-                <ComboBoxItem>3</ComboBoxItem>
+            <zctrl:ZeroComboBox IsEditable="False" Text="{Binding CompareOperator}" ItemsSource="{Binding CompareOperators}">
+                <zctrl:ZeroComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding .,Converter={StaticResource compareOperatorToString}}"></TextBlock>
+                    </DataTemplate>
+                </zctrl:ZeroComboBox.ItemTemplate>
+            </zctrl:ZeroComboBox>
+            <zctrl:ZeroComboBox IsEditable="True" Text="{Binding CompareOperator}" ItemsSource="{Binding CompareOperators}">
+                <zctrl:ZeroComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding .,Converter={StaticResource compareOperatorToString}}"></TextBlock>
+                    </DataTemplate>
+                </zctrl:ZeroComboBox.ItemTemplate>
             </zctrl:ZeroComboBox>
             <zctrl:ZeroDatePicker/>
             <WrapPanel Orientation="Vertical">
