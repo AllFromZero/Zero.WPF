@@ -97,7 +97,7 @@
             </WrapPanel>
             <StackPanel>
                 <TextBlock x:Name="txt_light1" Text="{StaticResource Zero.IconCode.Lightbulb}" Visibility="{Binding IsOn,ElementName=wbtn_1,Converter={StaticResource Zero.Converter.BooleanToVisibility},Mode=TwoWay,ConverterParameter=Invert}" FontSize="25" Foreground="Red" FontFamily="{StaticResource Zero.FontFamily.Icon}"/>
-                <zctrl:ZeroSwitchButton x:Name="wbtn_1" IsOn="{Binding IsOn,ElementName=wbtn_2,Converter={StaticResource Zero.Converter.BooleanInverter}}"/>
+                <zctrl:ZeroSwitchButton x:Name="wbtn_1" IsOn="{Binding IsOn}"/>
                 <TextBlock x:Name="txt_light2" Text="{StaticResource Zero.IconCode.Lightbulb}" Visibility="{Binding IsOn,ElementName=wbtn_2,Converter={StaticResource Zero.Converter.BooleanToVisibility}}" FontSize="25" Foreground="Green" FontFamily="{StaticResource Zero.FontFamily.Icon}"/>
                 <zctrl:ZeroSwitchButton x:Name="wbtn_2"/>
                 <zctrl:ZeroSwitchButton IsOn="{x:Null}" x:Name="wbtn_3"/>

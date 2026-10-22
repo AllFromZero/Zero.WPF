@@ -14,11 +14,24 @@ namespace Test
 
         [ObservableProperty]
         public partial CompareOperator CompareOperator { get; set; }
+
+        [ObservableProperty]
+        public partial bool IsOn { get; set; } = false;
  
         protected override void OnViewLoaded(object? sender)
         {
             TotalDataCnt = 300;
         }
+
+        /// <summary>
+        /// IsOn变更
+        /// </summary>
+        /// <param name="value"></param>
+        partial void OnIsOnChanged(bool value)
+        {
+            Debug.WriteLine(string.Format("IsOn状态：{0}", IsOn));
+        }
+
 
         /// <summary>
         /// 

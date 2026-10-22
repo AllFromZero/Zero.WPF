@@ -227,19 +227,19 @@ namespace Zero.WPF.Controls
                 switch (IsOn)
                 {
                     case true:
-                        IsOn = null;
+                        SetCurrentValue(IsOnProperty, null);
                         break;
                     case null:
-                        IsOn = false;
+                        SetCurrentValue(IsOnProperty, false);
                         break;
                     case false:
-                        IsOn = true;
+                        SetCurrentValue(IsOnProperty, true);
                         break;
                 }
             }
             else
             {
-                IsOn = IsOn == null? false : IsOn ^ true;
+                SetCurrentValue(IsOnProperty, IsOn != null && !IsOn.Value);
             }
         }
 
