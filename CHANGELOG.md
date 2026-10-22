@@ -1,9 +1,10 @@
 # 更新记录
 
-## v1.0.18
+## v1.0.18 2026.10.22
 
 - 添加UpdateCommand命令
 - 优化ZeroNumericBox控件，直接动态截取数值的小数点，使用四舍五入方式处理。
+- 修改ZeroSwitchButton，将IsOn刷新改成用SetCurrentValue方法。
 
 ## v1.0.17 2026.10.13
 
