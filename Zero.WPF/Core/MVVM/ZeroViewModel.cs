@@ -102,14 +102,14 @@ namespace Zero.WPF.Core.MVVM
         /// </summary>
         [ObservableProperty]
         public partial string? QueryInfo { get; set; }
-        
+
         /// <summary>
         /// 查询开始时间
         /// </summary>
         /// <remarks>固定设置为当天00:00:00</remarks>
-        public DateTime? QueryStartTime 
-        { 
-            get=> _queryStartTime;
+        public DateTime? QueryStartTime
+        {
+            get => _queryStartTime;
             set
             {
                 if (value.HasValue && QueryEndTime.HasValue)
@@ -120,7 +120,7 @@ namespace Zero.WPF.Core.MVVM
                     }
                     value = value.Value.Date;
                 }
-                
+
                 SetProperty(ref _queryStartTime, value);
             }
         }
@@ -128,8 +128,8 @@ namespace Zero.WPF.Core.MVVM
         /// 查询结束时间
         /// </summary>
         /// <remarks>固定设置为当天23:59:59.999</remarks>
-        public DateTime? QueryEndTime 
-        { 
+        public DateTime? QueryEndTime
+        {
             get => _queryEndTime;
             set
             {
@@ -572,6 +572,26 @@ namespace Zero.WPF.Core.MVVM
             }
         }
 
+        /// <summary>
+        /// 执行异步操作，有参数有返回值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="func"></param>
+        /// <returns></returns>
+        public async Task<T?> RunBusyAsync<T>(Func<Task<T>> func)
+        {
+            if (IsBusy) return default;
+
+            IsBusy = true;
+            try
+            {
+                return await func();
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
         #endregion Async Commands
 
         /// <summary>

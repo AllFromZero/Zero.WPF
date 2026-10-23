@@ -101,53 +101,53 @@
 | private async Task UpdateAsync(object? sender)   | 异步更新                               |
 | private async Task UploadAsync(object? sender)   | 异步上传                               |
 | private async Task DownloadAsync(object? sender) | 异步下载                               |
-| private async Task RunBusyAsync(object? sender)  | 执行异步操作                           |
 | private async Task SendAsync(object? sender)     | 发送                                   |
 
 使用时，Xaml界面绑定对应的Command，C#页面直接重写对应的方法即可，基类模型默认关联对应的函数方法。
 
 ## 可重写方法
 
-| 函数                                                    | 说明                           |
-| ------------------------------------------------------- | ------------------------------ |
-| protected virtual void OnDetails(object? sender)        | 详情                           |
-| protected virtual void OnEdit(object? sender)           | 编辑，私有方法中调用，支持重写 |
-| protected virtual void OnViewLoaded(object? sender)     | 页面加载                       |
-| protected virtual void OnViewUnLoaded(object? sender)   | 卸载页面                       |
-| protected virtual void OnVisibleChanged(object? sender) | 可见属性变更                   |
-| protected virtual void OnImport(object? sender)         | 导入函数                       |
-| protected virtual void OnPrint(object? sender)          | 打印函数                       |
-| protected virtual void OnPreview(object? sender)        | 预览函数                       |
-| protected virtual void OnExport(object? sender)         | 导出函数                       |
-| protected virtual void OnSave(object? sender)           | 保存函数                       |
-| protected virtual void OnSaveAs(object? sender)         | 另存为                         |
-| protected virtual void OnAdd(object? sender)            | 添加函数                       |
-| protected virtual void OnDelete(object? sender)         | 删除                           |
-| protected virtual void OnModify(object? sender)         | 修改                           |
-| protected virtual void OnReview(object? sender)         | 复核函数                       |
-| protected virtual void OnRevert(object? sender)         | 恢复函数                       |
-| protected virtual void OnQuery(object? sender)          | 查询函数                       |
-| protected virtual void OnRefresh(object? sender)        | 刷新                           |
-| protected virtual void OnCancel(object? sender)         | 取消                           |
-| protected virtual void OnConfirm(object? sender)        | 确认                           |
-| protected virtual void OnClose(object? sender)          | 关闭                           |
-| protected virtual void OnClosing(object? sender)        | 关闭中                         |
-| protected virtual void OnClosed(object? sender)         | 已关闭                         |
-| protected virtual void OnDialogClose(object? sender)    | 对话框关闭                     |
-| protected virtual void OnLogin(object? sender)          | 登录                           |
-| protected virtual void OnMoveToTop(object? sender)      | 置顶                           |
-| protected virtual void OnMoveUp(object? sender)         | 上移                           |
-| protected virtual void OnMoveDown(object? sender)       | 下移                           |
-| protected virtual void OnMoveToBottom(object? sender)   | 置底                           |
-| protected virtual void OnInsert(object? sender)         | 插入                           |
-| protected virtual void OnInsertBefore(object? sender)   | 插入到...之前命令              |
-| protected virtual void OnInsertAfter(object? sender)    | 插入到...之后命令              |
-| protected virtual Task OnLoadDataAsync(object? sender)  | 数据加载                       |
-| protected virtual Task OnUpdate(object? sender)         | 更新                           |
-| protected virtual Task OnUpload(object? sender)         | 上传                           |
-| protected virtual Task OnDownload(object? sender)       | 下载                           |
-| protected virtual Task OnSend(object? sender)           | 发送                           |
-|                                                         |                                |
+| 函数                                                      | 说明                           |
+| --------------------------------------------------------- | ------------------------------ |
+| protected virtual void OnDetails(object? sender)          | 详情                           |
+| protected virtual void OnEdit(object? sender)             | 编辑，私有方法中调用，支持重写 |
+| protected virtual void OnViewLoaded(object? sender)       | 页面加载                       |
+| protected virtual void OnViewUnLoaded(object? sender)     | 卸载页面                       |
+| protected virtual void OnVisibleChanged(object? sender)   | 可见属性变更                   |
+| protected virtual void OnImport(object? sender)           | 导入函数                       |
+| protected virtual void OnPrint(object? sender)            | 打印函数                       |
+| protected virtual void OnPreview(object? sender)          | 预览函数                       |
+| protected virtual void OnExport(object? sender)           | 导出函数                       |
+| protected virtual void OnSave(object? sender)             | 保存函数                       |
+| protected virtual void OnSaveAs(object? sender)           | 另存为                         |
+| protected virtual void OnAdd(object? sender)              | 添加函数                       |
+| protected virtual void OnDelete(object? sender)           | 删除                           |
+| protected virtual void OnModify(object? sender)           | 修改                           |
+| protected virtual void OnReview(object? sender)           | 复核函数                       |
+| protected virtual void OnRevert(object? sender)           | 恢复函数                       |
+| protected virtual void OnQuery(object? sender)            | 查询函数                       |
+| protected virtual void OnRefresh(object? sender)          | 刷新                           |
+| protected virtual void OnCancel(object? sender)           | 取消                           |
+| protected virtual void OnConfirm(object? sender)          | 确认                           |
+| protected virtual void OnClose(object? sender)            | 关闭                           |
+| protected virtual void OnClosing(object? sender)          | 关闭中                         |
+| protected virtual void OnClosed(object? sender)           | 已关闭                         |
+| protected virtual void OnDialogClose(object? sender)      | 对话框关闭                     |
+| protected virtual void OnLogin(object? sender)            | 登录                           |
+| protected virtual void OnMoveToTop(object? sender)        | 置顶                           |
+| protected virtual void OnMoveUp(object? sender)           | 上移                           |
+| protected virtual void OnMoveDown(object? sender)         | 下移                           |
+| protected virtual void OnMoveToBottom(object? sender)     | 置底                           |
+| protected virtual void OnInsert(object? sender)           | 插入                           |
+| protected virtual void OnInsertBefore(object? sender)     | 插入到...之前命令              |
+| protected virtual void OnInsertAfter(object? sender)      | 插入到...之后命令              |
+| protected virtual Task OnLoadDataAsync(object? sender)    | 数据加载                       |
+| protected virtual Task OnUpdate(object? sender)           | 更新                           |
+| protected virtual Task OnUpload(object? sender)           | 上传                           |
+| protected virtual Task OnDownload(object? sender)         | 下载                           |
+| protected virtual Task OnSend(object? sender)             | 发送                           |
+| public async Task RunBusyAsync(Func<Task> action)         | 执行异步操作                   |
+| public async Task<T?> RunBusyAsync<T>(Func<Task<T>> func) | 执行异步操作，有参数有返回值   |
 
 ## 方法
 
