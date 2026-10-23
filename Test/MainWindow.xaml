@@ -25,9 +25,9 @@
     <DockPanel LastChildFill="True">
         <zctrl:ZeroNavigationBar DockPanel.Dock="Bottom" CornerRadius="10" Height="60" VerticalAlignment="Bottom"></zctrl:ZeroNavigationBar>
         <WrapPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto">
-            <zctrl:ZeroButton HorizontalAlignment="Left" VerticalAlignment="Top" IconWidth="20" IconHeight="20" Content="Button">
+            <zctrl:ZeroButton Command="{Binding SendCommand}" HorizontalAlignment="Left" VerticalAlignment="Top" IconWidth="20" IconHeight="20" Content="发送">
                 <zctrl:ZeroButton.Icon>
-                    <TextBlock Text="0"/>
+                    <TextBlock Text="{StaticResource Zero.IconCode.Send}" FontFamily="{StaticResource Zero.FontFamily.Icon}"/>
                 </zctrl:ZeroButton.Icon>
             </zctrl:ZeroButton>
             <zctrl:ZeroTextBox x:Name="txt" MaskText="今天适合好日子" Text=""/>

@@ -44,6 +44,7 @@
 | InsertCommand         | RelayCommand? | 插入命令                                              |
 | InsertBeforeCommand   | RelayCommand? | 插入到...之前命令                                     |
 | InsertAfterCommand    | RelayCommand? | 插入到...之后命令                                     |
+| SendCommand           | RelayCommand? | 发送命令                                              |
 | IsViewEnabled         | bool          | 试图是否使能                                          |
 | IsOn                  | bool          | 是否启动                                              |
 | IsViewLoaded          | bool          | 是否已加载                                            |
@@ -97,9 +98,11 @@
 | private void InsertBefore(object? sender)        | 插入到...之前命令                      |
 | private void InsertAfter(object? sender)         | 插入到...之后命令                      |
 | private async Task LoadDataAsync(object? sender) | 异步方法，加载指令                     |
-| private async Task Update(object? sender)        | 异步更新                               |
-| private async Task Upload(object? sender)        | 异步上传                               |
-| private async Task Download(object? sender)      | 异步下载                               |
+| private async Task UpdateAsync(object? sender)   | 异步更新                               |
+| private async Task UploadAsync(object? sender)   | 异步上传                               |
+| private async Task DownloadAsync(object? sender) | 异步下载                               |
+| private async Task RunBusyAsync(object? sender)  | 执行异步操作                           |
+| private async Task SendAsync(object? sender)     | 发送                                   |
 
 使用时，Xaml界面绑定对应的Command，C#页面直接重写对应的方法即可，基类模型默认关联对应的函数方法。
 
@@ -143,6 +146,8 @@
 | protected virtual Task OnUpdate(object? sender)         | 更新                           |
 | protected virtual Task OnUpload(object? sender)         | 上传                           |
 | protected virtual Task OnDownload(object? sender)       | 下载                           |
+| protected virtual Task OnSend(object? sender)           | 发送                           |
+|                                                         |                                |
 
 ## 方法
 

@@ -52,5 +52,12 @@ namespace Test
             //TotalDataCnt ++;
             Debug.WriteLine("导航到页面：" + TargetPage + "/" + TotalPageCnt);
         }
+
+        protected override async Task OnSendAsync(object? sender)
+        {
+            Debug.WriteLine("发送方法：");
+           
+            await Task.CompletedTask;
+        }
     }
 }

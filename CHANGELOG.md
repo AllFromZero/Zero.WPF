@@ -1,5 +1,10 @@
 # 更新记录
 
+## v1.0.19
+
+- 添加RunBusyAsync方法，便于统一执行异步操作，更新IsBusy状态
+- 添加SencCommand命令
+
 ## v1.0.18 2026.10.22
 
 - 添加UpdateCommand命令

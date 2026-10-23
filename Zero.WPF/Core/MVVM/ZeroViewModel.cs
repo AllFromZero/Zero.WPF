@@ -511,75 +511,60 @@ namespace Zero.WPF.Core.MVVM
         /// 异步加载命令示例
         /// </summary>
         [RelayCommand]
-        private async Task LoadDataAsync(object? sender)
+        private Task LoadDataAsync(object? sender)
         {
-            if (IsBusy) return;
-
-            IsBusy = true;
-
-            try
-            {
-                await OnLoadDataAsync(sender);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            return RunBusyAsync(() => OnLoadDataAsync(sender));
         }
 
         /// <summary>
         /// 异步下载命令
         /// </summary>
         [RelayCommand]
-        private async Task DownloadAsync(object? sender)
+        private Task DownloadAsync(object? sender)
         {
-            if (IsBusy) return;
+            return RunBusyAsync(() => OnDownloadAsync(sender));
+        }
 
-            IsBusy = true;
-
-            try
-            {
-                await OnDownloadAsync(sender);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+        /// <summary>
+        /// 发送命令
+        /// </summary>
+        [RelayCommand]
+        private Task SendAsync(object? sender)
+        {
+            return RunBusyAsync(() => OnSendAsync(sender));
         }
 
         /// <summary>
         /// 异步更新命令
         /// </summary>
         [RelayCommand]
-        private async Task UpdateAsync(object? sender)
+        private Task UpdateAsync(object? sender)
         {
-            if (IsBusy) return;
-
-            IsBusy = true;
-
-            try
-            {
-                await OnUpdateAsync(sender);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            return RunBusyAsync(() => OnUpdateAsync(sender));
         }
 
         /// <summary>
         /// 异步上传命令
         /// </summary>
         [RelayCommand]
-        private async Task UploadAsync(object? sender)
+        private Task UploadAsync(object? sender)
+        {
+            return RunBusyAsync(() => OnUploadAsync(sender));
+        }
+
+        /// <summary>
+        /// 异步执行函数
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        public async Task RunBusyAsync(Func<Task> action)
         {
             if (IsBusy) return;
 
             IsBusy = true;
-
             try
             {
-                await OnUploadAsync(sender);
+                await action();
             }
             finally
             {
@@ -928,6 +913,14 @@ namespace Zero.WPF.Core.MVVM
         /// 异步下载数据（子类可重写）
         /// </summary>
         protected virtual Task OnDownloadAsync(object? sender)
+        {
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// 异步发送（子类可重写）
+        /// </summary>
+        protected virtual Task OnSendAsync(object? sender)
         {
             return Task.CompletedTask;
         }
